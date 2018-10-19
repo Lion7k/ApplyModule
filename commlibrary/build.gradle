@@ -1,0 +1,86 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 27
+    }
+
+    buildTypes {
+        //开发版
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+//            signingConfig signingConfigs.release
+            versionNameSuffix "_debug"
+            minifyEnabled false   //是否混淆
+            zipAlignEnabled false //使包内未压缩的数据有序的排列
+//            shrinkResources false // 移除无用的resource文件
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        //内部测试
+        alpha {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+//            signingConfig signingConfigs.release
+            versionNameSuffix "_正式版"
+            minifyEnabled false
+            zipAlignEnabled false
+//            shrinkResources false
+            debuggable true
+        }
+        //公开测试
+        beta {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            versionNameSuffix "_beta"
+//            signingConfig signingConfigs.release
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+//            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        //正式
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+//            signingConfig signingConfigs.release
+            minifyEnabled true
+            zipAlignEnabled true
+            // 移除无用的resource文件
+//            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 这个是解决lint报错的代码
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+        disable 'MissingTranslation'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+
+    //1.1.0 API改动过大，老用户升级需谨慎
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'//版本 23以上（必须）
+    //RecyclerView万能适配器
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.43-alpha1'
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    //rxpermissions 权限
+    compile 'com.github.tbruyelle:rxpermissions:0.10.2'
+}
