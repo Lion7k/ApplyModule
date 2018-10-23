@@ -194,7 +194,11 @@ public class OkHttpConfig {
          * 配置缓存
          */
         private void setCacheConfig() {
-            defaultCachePath = context.getExternalCacheDir().getPath() + "/RxHttpCacheData";
+            File externalCacheDir = context.getExternalCacheDir();
+            if (null == externalCacheDir) {
+                return;
+            }
+            defaultCachePath = externalCacheDir.getPath() + "/RxHttpCacheData";
             if (isCache) {
                 Cache cache;
                 if (!TextUtils.isEmpty(cachePath) && cacheMaxSize > 0) {
