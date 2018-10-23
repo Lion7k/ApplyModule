@@ -71,6 +71,7 @@ public class PageLayout extends FrameLayout {
 
     private void changeView(State state) {
         mCurrentState = state;
+        setViewGone();
         switch (state) {
             case LOADING_TYPE:
                 mLoading.setVisibility(VISIBLE);
@@ -87,6 +88,16 @@ public class PageLayout extends FrameLayout {
             case CONTENT_TYPE:
                 mContent.setVisibility(VISIBLE);
                 break;
+        }
+    }
+
+    private void setViewGone() {
+        mLoading.setVisibility(GONE);
+        mEmpty.setVisibility(GONE);
+        mError.setVisibility(GONE);
+        mContent.setVisibility(GONE);
+        if (mCustom != null) {
+            mCustom.setVisibility(GONE);
         }
     }
 
@@ -116,7 +127,7 @@ public class PageLayout extends FrameLayout {
         showView(State.CUSTOM_TYPE);
     }
 
-    class Builder {
+    public static class Builder {
         private PageLayout mPageLayout;
         private LayoutInflater mInflater;
         private Context mContext;
@@ -158,7 +169,13 @@ public class PageLayout extends FrameLayout {
             mPageLayout.mError = mInflater.inflate(R.layout.layout_error, mPageLayout, false);
             mTvError = mPageLayout.mError.findViewById(R.id.tv_page_error);
             mTvErrorRetry = mPageLayout.mError.findViewById(R.id.tv_page_error_retry);
-
+            mTvErrorRetry.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mOnRetryClickListener != null)
+                        mOnRetryClickListener.onRetry();
+                }
+            });
             mPageLayout.mError.setVisibility(GONE);
             mPageLayout.addView(mPageLayout.mError);
         }
@@ -175,8 +192,8 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置loading布局
          */
-        protected Builder setLoading(@LayoutRes int loading, @IdRes int loadingTvId) {
-            mPageLayout.mLoading = mInflater.inflate(loading, mPageLayout, false);
+        public Builder setLoading(@LayoutRes int loadingId, @IdRes int loadingTvId) {
+            mPageLayout.mLoading = mInflater.inflate(loadingId, mPageLayout, false);
             mTvLoading = mPageLayout.mLoading.findViewById(loadingTvId);
             mPageLayout.addView(mPageLayout.mLoading);
             return this;
@@ -186,8 +203,8 @@ public class PageLayout extends FrameLayout {
          * 自定义错误布局
          * 默认样式，传入错误文案ID，及点击回调
          */
-        protected Builder setError(@LayoutRes int errorView, @IdRes int errorClickId, final OnRetryClickListener onRetryClickListener) {
-            mPageLayout.mError = mInflater.inflate(errorView, mPageLayout, false);
+        public Builder setError(@LayoutRes int errorId, @IdRes int errorClickId, final OnRetryClickListener onRetryClickListener) {
+            mPageLayout.mError = mInflater.inflate(errorId, mPageLayout, false);
             mPageLayout.addView(mPageLayout.mError);
             mTvError = mPageLayout.mError.findViewById(errorClickId);
             mTvError.setOnClickListener(new OnClickListener() {
@@ -205,17 +222,17 @@ public class PageLayout extends FrameLayout {
          * 自定义错误布局
          * 设置前需手动初始化好View中各个事件
          */
-        protected Builder setError(View errorView) {
+        public Builder setError(View errorView) {
             mPageLayout.mError = errorView;
-            addView(errorView);
+            mPageLayout.addView(errorView);
             return this;
         }
 
         /**
          * 自定义空布局
          */
-        protected Builder setEmpty(@LayoutRes int empty, @IdRes int emptyTvId) {
-            mPageLayout.mEmpty = mInflater.inflate(empty, null, false);
+        public Builder setEmpty(@LayoutRes int empty, @IdRes int emptyTvId) {
+            mPageLayout.mEmpty = mInflater.inflate(empty, mPageLayout, false);
             mTvEmpty = mPageLayout.mEmpty.findViewById(emptyTvId);
             mPageLayout.addView(mPageLayout.mEmpty);
             return this;
@@ -224,7 +241,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 自定义布局
          */
-        protected Builder setCustomView(View view) {
+        public Builder setCustomView(View view) {
             mPageLayout.mCustom = view;
             mPageLayout.addView(view);
             return this;
@@ -233,7 +250,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置加载文案
          */
-        protected Builder setLoadingText(String text) {
+        public Builder setLoadingText(String text) {
             mTvLoading.setText(text);
             return this;
         }
@@ -241,7 +258,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置默认闪烁加载文案
          */
-        protected Builder setDefaultLoadingBlinkText(String text) {
+        public Builder setDefaultLoadingBlinkText(String text) {
             mTvLoadingBlink.setText(text);
             return this;
         }
@@ -249,7 +266,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置加载文字颜色
          */
-        protected Builder setLoadingTextColor(@ColorRes int color) {
+        public Builder setLoadingTextColor(@ColorRes int color) {
             mTvLoading.setTextColor(mContext.getResources().getColor(color));
             return this;
         }
@@ -257,7 +274,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置默认加载闪烁颜色
          */
-        protected Builder setDefaultLoadingBlinkColor(@ColorRes int color) {
+        public Builder setDefaultLoadingBlinkColor(@ColorRes int color) {
             mBlinkLayout.setShimmerColor(mContext.getResources().getColor(color));
             return this;
         }
@@ -265,7 +282,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置默认空布局文案
          */
-        protected Builder setDefaultEmptyText(String text) {
+        public Builder setDefaultEmptyText(String text) {
             mTvEmpty.setText(text);
             return this;
         }
@@ -273,7 +290,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置默认空布局文案颜色
          */
-        protected Builder setDefaultEmptyTextColor(@ColorRes int color) {
+        public Builder setDefaultEmptyTextColor(@ColorRes int color) {
             mTvEmpty.setTextColor(mContext.getResources().getColor(color));
             return this;
         }
@@ -281,7 +298,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置默认错误布局文案
          */
-        protected Builder setDefaultErrorText(String text) {
+        public Builder setDefaultErrorText(String text) {
             mTvError.setText(text);
             return this;
         }
@@ -289,7 +306,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置默认错误布局文案颜色
          */
-        protected Builder setDefaultErrorTextColor(@ColorRes int color) {
+        public Builder setDefaultErrorTextColor(@ColorRes int color) {
             mTvError.setTextColor(mContext.getResources().getColor(color));
             return this;
         }
@@ -297,7 +314,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置默认错误布局重试文案
          */
-        protected Builder setDefaultErrorRetryText(String text) {
+        public Builder setDefaultErrorRetryText(String text) {
             mTvErrorRetry.setText(text);
             return this;
         }
@@ -305,7 +322,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置默认错误布局重试文案颜色
          */
-        protected Builder setDefaultErrorRetryTextColor(@ColorRes int color) {
+        public Builder setDefaultErrorRetryTextColor(@ColorRes int color) {
             mTvErrorRetry.setTextColor(mContext.getResources().getColor(color));
             return this;
         }
@@ -313,7 +330,15 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置空布局提醒图片
          */
-        protected Builder setEmptyDrawable(@IdRes int resId) {
+        public Builder setEmptyDrawable(@DrawableRes int resId) {
+            setTopDrawables(mTvError, resId);
+            return this;
+        }
+
+        /**
+         * 设置错误布局提醒图片
+         */
+        public Builder setErrorDrawable(int resId) {
             setTopDrawables(mTvError, resId);
             return this;
         }
@@ -321,7 +346,7 @@ public class PageLayout extends FrameLayout {
         /**
          * 设置布局top drawable
          */
-        private void setTopDrawables(TextView textView, int resId) {
+        private void setTopDrawables(TextView textView, @DrawableRes int resId) {
             if (resId == 0) {
                 textView.setCompoundDrawables(null, null, null, null);
             }
@@ -334,58 +359,56 @@ public class PageLayout extends FrameLayout {
         /**
          * set target view for root
          */
-        protected Builder initPage(Object targetView) {
+        public Builder initPage(Object targetView) {
             ViewGroup content = null;
             if (targetView instanceof Activity) {  //如果是Activity，获取到android.R.content
                 mContext = (Context) targetView;
-                content = ((Activity) mContext).findViewById(android.R.id.content);
+                content = ((Activity) targetView).findViewById(android.R.id.content);
             } else if (targetView instanceof Fragment) {   //如果是Fragment获取到parent
                 mContext = ((Fragment) targetView).getActivity();
                 content = (ViewGroup) ((Fragment) targetView).getView().getParent();
             } else if (targetView instanceof View) {  //如果是View，也取到parent
                 mContext = ((View) targetView).getContext();
-                try {
-                    content = (ViewGroup) ((View) targetView).getParent();
-                } catch (TypeNotPresentException e) {
-
-                }
+                content = (ViewGroup) ((View) targetView).getParent();
             }
-            int childCount = content.getChildCount();
-            int index = 0;
-            View oldContent;
-            if (targetView instanceof View) { //如果是某个线性布局或者相对布局时，遍历它的孩子，找到对应的索引，记录下来
-                oldContent = (View) targetView;
-                for (int i = 0; i < childCount; i++) {
-                    if (content.getChildAt(i) == oldContent) {
-                        index = i;
-                        break;
+            if (content != null) {
+                int childCount = content.getChildCount();
+                int index = 0;
+                View oldContent;
+                if (targetView instanceof View) { //如果是某个线性布局或者相对布局时，遍历它的孩子，找到对应的索引，记录下来
+                    oldContent = (View) targetView;
+                    for (int i = 0; i < childCount; i++) {
+                        if (content.getChildAt(i) == oldContent) {
+                            index = i;
+                            break;
+                        }
                     }
+                } else {    //如果是Activity或者Fragment时，取到索引为第一个的View
+                    oldContent = content.getChildAt(0);
                 }
-            } else {    //如果是Activity或者Fragment时，取到索引为第一个的View
-                oldContent = content.getChildAt(0);
-            }
 
-            mPageLayout.mContent = oldContent;   //给PageLayout设置contentView
-            mPageLayout.removeAllViews();
-            content.removeView(oldContent);    //将本身content移除，并且把PageLayout添加到DecorView中去
-            ViewGroup.LayoutParams lp = oldContent.getLayoutParams();
-            content.addView(mPageLayout, index, lp);
-            mPageLayout.addView(oldContent);
-            initDefault();  //设置默认状态布局
+                mPageLayout.mContent = oldContent;   //给PageLayout设置contentView
+                mPageLayout.removeAllViews();
+                content.removeView(oldContent);    //将本身content移除，并且把PageLayout添加到DecorView中去
+                ViewGroup.LayoutParams lp = oldContent.getLayoutParams();
+                content.addView(mPageLayout, index, lp);
+                mPageLayout.addView(oldContent);
+                initDefault();  //设置默认状态布局
+            }
             return this;
         }
 
-        protected Builder setOnRetryListener(OnRetryClickListener onRetryListener) {
+        public Builder setOnRetryListener(OnRetryClickListener onRetryListener) {
             this.mOnRetryClickListener = onRetryListener;
             return this;
         }
 
-        protected PageLayout create() {
+        public PageLayout create() {
             return mPageLayout;
         }
     }
 
-    interface OnRetryClickListener {
+    public interface OnRetryClickListener {
         void onRetry();
     }
 }

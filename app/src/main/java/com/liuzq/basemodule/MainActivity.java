@@ -2,15 +2,22 @@ package com.liuzq.basemodule;
 
 import android.app.Dialog;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.liuzq.basemodule.api.ApiService;
 import com.liuzq.basemodule.bean.BookBean;
 import com.liuzq.commlibrary.utils.LogUtils;
 import com.liuzq.commlibrary.utils.ToastUtils;
+import com.liuzq.commlibrary.widget.PageLayout;
 import com.liuzq.httplibrary.RxHttpUtils;
 import com.liuzq.httplibrary.download.DownloadObserver;
 import com.liuzq.httplibrary.interceptor.Transformer;
@@ -32,8 +39,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loading_dialog = new AlertDialog.Builder(this).setMessage("loading...").create();
+//        loading_dialog = new AlertDialog.Builder(this).setMessage("loading...").create();
         setContentView(R.layout.activity_main);
+        pageLayout();
     }
 
     public void tv(View view) {
@@ -158,5 +166,63 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    PageLayout mPageLayout;
+
+    private void pageLayout() {
+        View ll_default = findViewById(R.id.ll_default);
+        View layout_custom = LayoutInflater.from(this).inflate(R.layout.layout_custom, null);
+        ImageView iv_custom = layout_custom.findViewById(R.id.iv_custom);
+        iv_custom.setImageResource(R.mipmap.icon_smile);
+        PageLayout.Builder builder = new PageLayout.Builder(this);
+        mPageLayout = builder.initPage(ll_default)
+                .setCustomView(layout_custom)
+                .setOnRetryListener(new PageLayout.OnRetryClickListener() {
+                    @Override
+                    public void onRetry() {
+                        loadData();
+                    }
+                })
+                .create();
+        loadData();
+    }
+
+    private void loadData() {
+        mPageLayout.showLoading();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPageLayout.hide();
+            }
+        }, 3000);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        new MenuInflater(this).inflate(R.menu.menus,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_content:
+                mPageLayout.hide();
+                break;
+            case R.id.menu_customer:
+                mPageLayout.showCustom();
+                break;
+            case R.id.menu_empty:
+                mPageLayout.showEmpty();
+                break;
+            case R.id.menu_error:
+                mPageLayout.showError();
+                break;
+            case R.id.menu_loading:
+                mPageLayout.showLoading();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
