@@ -9,7 +9,7 @@ import com.google.gson.GsonBuilder;
 
 public class GsonAdapter {
 
-    public static Gson bulidGson() {
+    public static Gson buildGson() {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Integer.class, new IntegerDefault0Adapter())
                 .registerTypeAdapter(int.class, new IntegerDefault0Adapter())

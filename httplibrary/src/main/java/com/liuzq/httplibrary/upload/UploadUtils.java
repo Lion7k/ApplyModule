@@ -20,7 +20,7 @@ public class UploadUtils {
      * 上传一张图片
      *
      * @param filePath 图片路径
-     * @return Observable
+     * @return List<MultipartBody.Part>
      */
     public static List<MultipartBody.Part> uploadImage(String filePath) {
         List<String> filePaths = new ArrayList<>();
@@ -32,7 +32,7 @@ public class UploadUtils {
      * 只上传图片
      *
      * @param filePaths 图片路径
-     * @return Observable
+     * @return List<MultipartBody.Part>
      */
     public static List<MultipartBody.Part> uploadImages(List<String> filePaths) {
         return uploadFilesWithParams("uploaded_file", null, filePaths);
@@ -44,7 +44,7 @@ public class UploadUtils {
      * @param fileName  后台协定的接受图片的name（没特殊要求就可以随便写）
      * @param paramsMap 普通参数
      * @param filePaths 图片路径
-     * @return Observable
+     * @return List<MultipartBody.Part>
      */
     public static List<MultipartBody.Part> uploadFilesWithParams(String fileName, Map<String, Object> paramsMap, List<String> filePaths) {
         MultipartBody.Builder builder = new MultipartBody.Builder()

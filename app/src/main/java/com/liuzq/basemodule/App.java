@@ -24,6 +24,17 @@ public class App extends BaseApplication {
         super.onCreate();
         ToastUtils.init(this);
         PreferencesUtils.initPrefs(this);
+
+//        获取证书
+//        InputStream cerInputStream = null;
+//        InputStream bksInputStream = null;
+//        try {
+//            cerInputStream = getAssets().open("YourSSL.cer");
+//            bksInputStream = getAssets().open("your.bks");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         OkHttpClient okHttpClient = new OkHttpConfig
                 .Builder(this)
                 //全局的请求头信息
@@ -58,10 +69,30 @@ public class App extends BaseApplication {
                 .getInstance()
                 .init(this)
                 .config()
+                //自定义factory的用法
+                //.setCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                //.setConverterFactory(ScalarsConverterFactory.create(),GsonConverterFactory.create(GsonAdapter.buildGson()))
                 //配置全局baseUrl
 //                .setBaseUrl("https://api.douban.com/")
                 .setBaseUrl("https://api.github.com/")
                 //开启全局配置
                 .setOkClient(okHttpClient);
+
+
+//        TODO: 2018/5/31 如果以上OkHttpClient的配置满足不了你，传入自己的 OkHttpClient 自行设置
+//        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+//
+//        builder
+//                .addInterceptor(log_interceptor)
+//                .readTimeout(10, TimeUnit.SECONDS)
+//                .writeTimeout(10, TimeUnit.SECONDS)
+//                .connectTimeout(10, TimeUnit.SECONDS);
+//
+//        RxHttpUtils
+//                .getInstance()
+//                .init(this)
+//                .config()
+//                .setBaseUrl(BuildConfig.BASE_URL)
+//                .setOkClient(builder.build());
     }
 }

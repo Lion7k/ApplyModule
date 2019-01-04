@@ -1,5 +1,7 @@
 package com.liuzq.httplibrary.download;
 
+import android.annotation.SuppressLint;
+
 import com.liuzq.httplibrary.manager.RxHttpManager;
 
 import java.io.IOException;
@@ -21,9 +23,15 @@ import okhttp3.ResponseBody;
 public abstract class DownloadObserver extends BaseDownloadObserver {
 
     private String fileName;
+    private String destFileDir;
 
     public DownloadObserver(String fileName) {
         this.fileName = fileName;
+    }
+
+    public DownloadObserver(String fileName, String destFileDir) {
+        this.fileName = fileName;
+        this.destFileDir = destFileDir;
     }
 
     /**
@@ -70,6 +78,7 @@ public abstract class DownloadObserver extends BaseDownloadObserver {
         RxHttpManager.get().add(setTag(), d);
     }
 
+    @SuppressLint("CheckResult")
     @Override
     public void onNext(@NonNull ResponseBody responseBody) {
         Observable
@@ -84,7 +93,7 @@ public abstract class DownloadObserver extends BaseDownloadObserver {
                     @Override
                     public void onNext(@NonNull ResponseBody responseBody) {
                         try {
-                            new DownloadManager().saveFile(responseBody, fileName, new ProgressListener() {
+                            new DownloadManager().saveFile(responseBody, fileName, destFileDir, new ProgressListener() {
                                 @Override
                                 public void onResponseProgress(final long bytesRead, final long contentLength, final int progress, final boolean done, final String filePath) {
                                     Observable

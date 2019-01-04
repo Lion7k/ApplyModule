@@ -1,6 +1,7 @@
 package com.liuzq.httplibrary.http;
 
 import com.liuzq.httplibrary.config.OkHttpConfig;
+import com.liuzq.httplibrary.config.RetrofitConfig;
 import com.liuzq.httplibrary.gson.GsonAdapter;
 import com.liuzq.httplibrary.interceptor.RxHttpLogger;
 
@@ -8,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.CallAdapter;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,12 +29,29 @@ public class RetrofitClient {
     private OkHttpClient okHttpClient;
 
     public RetrofitClient() {
+
         initDefaultOkHttpClient();
 
-        mRetrofitBuilder = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(GsonAdapter.bulidGson()));
+        mRetrofitBuilder = new Retrofit.Builder();
+
+        CallAdapter.Factory[] callAdapterFactories = RetrofitConfig.getInstance().getCallAdapterFactory();
+        Converter.Factory[] converterFactories = RetrofitConfig.getInstance().getConverterFactory();
+
+        if (null != callAdapterFactories && callAdapterFactories.length > 0) {
+            for (CallAdapter.Factory factory : callAdapterFactories) {
+                mRetrofitBuilder.addCallAdapterFactory(factory);
+            }
+        } else {
+            mRetrofitBuilder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        }
+        if (null != converterFactories && converterFactories.length > 0) {
+            for (Converter.Factory factory : converterFactories) {
+                mRetrofitBuilder.addConverterFactory(factory);
+            }
+        } else {
+            mRetrofitBuilder.addConverterFactory(ScalarsConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(GsonAdapter.buildGson()));
+        }
     }
 
     private void initDefaultOkHttpClient() {
