@@ -9,8 +9,6 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * <pre>
- *      @author : xiaoyao
- *      e-mail  : xiaoyao@51vest.com
  *      date    : 2018/08/09
  *      desc    : 管理请求--用于取消请求时候使用
  *      version : 1.0

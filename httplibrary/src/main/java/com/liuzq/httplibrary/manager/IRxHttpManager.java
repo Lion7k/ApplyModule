@@ -4,8 +4,6 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * <pre>
- *      @author : xiaoyao
- *      e-mail  : xiaoyao@51vest.com
  *      date    : 2018/08/09
  *      desc    : 请求管理接口
  *      version : 1.0

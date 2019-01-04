@@ -9,9 +9,6 @@ import io.reactivex.disposables.Disposable;
 
 
 /**
- * Created by Allen on 2017/10/31.
- *
- * @author Allen
  *         <p>
  *         自定义Observer 处理string回调
  */
