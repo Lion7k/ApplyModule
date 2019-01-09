@@ -6,11 +6,15 @@ import com.liuzq.commlibrary.utils.ToastUtils;
 import com.liuzq.httplibrary.RxHttpUtils;
 import com.liuzq.httplibrary.config.OkHttpConfig;
 import com.liuzq.httplibrary.cookie.store.SPCookieStore;
+import com.liuzq.httplibrary.gson.GsonAdapter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.OkHttpClient;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by liuzq on 2018/10/18.
@@ -70,11 +74,11 @@ public class App extends BaseApplication {
                 .init(this)
                 .config()
                 //自定义factory的用法
-                //.setCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                //.setConverterFactory(ScalarsConverterFactory.create(),GsonConverterFactory.create(GsonAdapter.buildGson()))
+                .setCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .setConverterFactory(ScalarsConverterFactory.create(),GsonConverterFactory.create(GsonAdapter.buildGson()))
                 //配置全局baseUrl
-//                .setBaseUrl("https://api.douban.com/")
-                .setBaseUrl("https://api.github.com/")
+                .setBaseUrl("https://api.douban.com/")
+//                .setBaseUrl("https://api.github.com/")
                 //开启全局配置
                 .setOkClient(okHttpClient);
 

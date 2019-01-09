@@ -49,7 +49,6 @@ public interface ApiService {
 //    @FormUrlEncoded
 //    @POST("xxx")
 //    Observable<BaseData<T>> getData(@Field("name") String name);
-//
 
     /**
      * 大文件官方建议用 @Streaming 来进行注解，不然会出现IO异常，小文件可以忽略不注入
@@ -72,4 +71,5 @@ public interface ApiService {
     @POST
     Observable<ResponseBody> uploadFiles(@Url String uploadUrl,
                                          @Part List<MultipartBody.Part> files);
+
 }

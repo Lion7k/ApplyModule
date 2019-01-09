@@ -71,12 +71,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     //1.1.0 API改动过大，老用户升级需谨慎
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'//没有使用特殊Header，可以不加这行
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-18'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-18'//没有使用特殊Header，可以不加这行
 //    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'//版本 23以上（必须）
     //RecyclerView万能适配器
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.43-alpha1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     //rxpermissions 权限
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    compile 'com.github.tbruyelle:rxpermissions:0.10.2'
 }
