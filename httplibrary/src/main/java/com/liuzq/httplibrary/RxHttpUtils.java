@@ -7,10 +7,10 @@ import android.content.Context;
 import com.liuzq.httplibrary.config.OkHttpConfig;
 import com.liuzq.httplibrary.cookie.CookieJarImpl;
 import com.liuzq.httplibrary.cookie.store.CookieStore;
-import com.liuzq.httplibrary.download.DownloadRetrofit;
-import com.liuzq.httplibrary.http.GlobalRxHttp;
+import com.liuzq.httplibrary.download.DownloadHelper;
+import com.liuzq.httplibrary.factory.ApiFactory;
 import com.liuzq.httplibrary.manager.RxHttpManager;
-import com.liuzq.httplibrary.upload.UploadRetrofit;
+import com.liuzq.httplibrary.upload.UploadHelper;
 
 import java.util.List;
 import java.util.Map;
@@ -31,10 +31,6 @@ public class RxHttpUtils {
     private static RxHttpUtils instance;
     @SuppressLint("StaticFieldLeak")
     private static Application context;
-
-    /*************************************************
-     * 全局请求
-     ***************************************************/
 
     public static RxHttpUtils getInstance() {
         if (instance == null) {
@@ -57,27 +53,51 @@ public class RxHttpUtils {
         return this;
     }
 
+    /**
+     * 获取全局上下文
+     */
     public static Context getContext() {
         checkInitialize();
         return context;
     }
 
+    /**
+     * 检测是否调用初始化方法
+     */
     private static void checkInitialize() {
         if (context == null) {
             throw new ExceptionInInitializerError("请先在全局Application中调用 RxHttpUtils.getInstance().init(this) 初始化！");
         }
     }
 
-    public GlobalRxHttp config() {
+    public ApiFactory config() {
         checkInitialize();
-        return GlobalRxHttp.getInstance();
+        return ApiFactory.getInstance();
     }
 
+    /**
+     * 使用全局参数创建请求
+     *
+     * @param cls Class
+     * @param <K> K
+     * @return 返回
+     */
     public static <K> K createApi(Class<K> cls) {
-        return GlobalRxHttp.createGApi(cls);
+        return ApiFactory.getInstance().createApi(cls);
     }
 
-    /*************************************************全局请求***************************************************/
+    /**
+     * 切换baseUrl
+     *
+     * @param baseUrlKey   域名的key
+     * @param baseUrlValue 域名的url
+     * @param cls          class
+     * @param <K>          k
+     * @return k
+     */
+    public static <K> K createApi(String baseUrlKey, String baseUrlValue, Class<K> cls) {
+        return ApiFactory.getInstance().createApi(baseUrlKey, baseUrlValue, cls);
+    }
 
     /*************************************************文件下载***************************************************/
 
@@ -88,7 +108,7 @@ public class RxHttpUtils {
      * @return ResponseBody
      */
     public static Observable<ResponseBody> downloadFile(String fileUrl) {
-        return DownloadRetrofit.downloadFile(fileUrl);
+        return DownloadHelper.downloadFile(fileUrl);
     }
 
     /*************************************************文件下载***************************************************/
@@ -103,7 +123,7 @@ public class RxHttpUtils {
      * @return ResponseBody
      */
     public static Observable<ResponseBody> uploadImg(String uploadUrl, String filePath) {
-        return UploadRetrofit.uploadImage(uploadUrl, filePath);
+        return UploadHelper.uploadImage(uploadUrl, filePath);
     }
 
     /**
@@ -114,7 +134,7 @@ public class RxHttpUtils {
      * @return ResponseBody
      */
     public static Observable<ResponseBody> uploadImages(String uploadUrl, List<String> filePaths) {
-        return UploadRetrofit.uploadImages(uploadUrl, filePaths);
+        return UploadHelper.uploadImages(uploadUrl, filePaths);
     }
 
     /**
@@ -127,7 +147,7 @@ public class RxHttpUtils {
      * @return ResponseBody
      */
     public static Observable<ResponseBody> uploadImagesWithParams(String uploadUrl, String fileName, Map<String, Object> paramsMap, List<String> filePaths) {
-        return UploadRetrofit.uploadFilesWithParams(uploadUrl, fileName, paramsMap, filePaths);
+        return UploadHelper.uploadFilesWithParams(uploadUrl, fileName, paramsMap, filePaths);
     }
 
     /*************************************************上传图片***************************************************/
@@ -154,7 +174,7 @@ public class RxHttpUtils {
      * 获取全局的CookieJarImpl实例
      */
     private static CookieJarImpl getCookieJar() {
-        return (CookieJarImpl) OkHttpConfig.getOkHttpClient().cookieJar();
+        return (CookieJarImpl) OkHttpConfig.getInstance().getOkHttpClient().cookieJar();
     }
 
     /**

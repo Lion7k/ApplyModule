@@ -5,17 +5,19 @@ import android.text.TextUtils;
 
 import com.liuzq.httplibrary.cookie.CookieJarImpl;
 import com.liuzq.httplibrary.cookie.store.CookieStore;
-import com.liuzq.httplibrary.http.HttpClient;
 import com.liuzq.httplibrary.http.SSLUtils;
 import com.liuzq.httplibrary.interceptor.HeaderInterceptor;
 import com.liuzq.httplibrary.interceptor.NetCacheInterceptor;
 import com.liuzq.httplibrary.interceptor.NoNetCacheInterceptor;
 import com.liuzq.httplibrary.interceptor.RxHttpLogger;
+import com.liuzq.httplibrary.interfaces.BuildHeadersListener;
 
 import java.io.File;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
 
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -44,7 +46,7 @@ public class OkHttpConfig {
     public static OkHttpConfig getInstance() {
 
         if (instance == null) {
-            synchronized (HttpClient.class) {
+            synchronized (OkHttpConfig.class) {
                 if (instance == null) {
                     instance = new OkHttpConfig();
                 }
@@ -53,15 +55,20 @@ public class OkHttpConfig {
         return instance;
     }
 
-    public static OkHttpClient getOkHttpClient() {
-        return okHttpClient;
+    public OkHttpClient getOkHttpClient() {
+        if (okHttpClient == null) {
+            return okHttpClientBuilder.build();
+        } else {
+            return okHttpClient;
+        }
     }
 
     public static class Builder {
         public Context context;
-        private Map<String, Object> headerMaps;
         private boolean isDebug;
         private boolean isCache;
+        private int cacheTime = 60;
+        private int noNetCacheTime = 10;
         private String cachePath;
         private long cacheMaxSize;
         private CookieStore cookieStore;
@@ -72,13 +79,15 @@ public class OkHttpConfig {
         private String password;
         private InputStream[] certificates;
         private Interceptor[] interceptors;
+        private BuildHeadersListener buildHeadersListener;
+        private HostnameVerifier hostnameVerifier;
 
         public Builder(Context context) {
             this.context = context;
         }
 
-        public Builder setHeaders(Map<String, Object> headerMaps) {
-            this.headerMaps = headerMaps;
+        public Builder setHeaders(BuildHeadersListener buildHeadersListener) {
+            this.buildHeadersListener = buildHeadersListener;
             return this;
         }
 
@@ -89,6 +98,16 @@ public class OkHttpConfig {
 
         public Builder setCache(boolean isCache) {
             this.isCache = isCache;
+            return this;
+        }
+
+        public Builder setHasNetCacheTime(int cacheTime) {
+            this.cacheTime = cacheTime;
+            return this;
+        }
+
+        public Builder setNoNetCacheTime(int noNetCacheTime) {
+            this.noNetCacheTime = noNetCacheTime;
             return this;
         }
 
@@ -139,6 +158,12 @@ public class OkHttpConfig {
             return this;
         }
 
+        public Builder setHostnameVerifier(HostnameVerifier hostnameVerifier) {
+            this.hostnameVerifier = hostnameVerifier;
+            return this;
+        }
+
+
         public OkHttpClient build() {
 
             OkHttpConfig.getInstance();
@@ -147,6 +172,7 @@ public class OkHttpConfig {
             setCacheConfig();
             setHeadersConfig();
             setSslConfig();
+            setHostnameVerifier();
             addInterceptors();
             setTimeout();
             setDebugConfig();
@@ -174,11 +200,20 @@ public class OkHttpConfig {
             }
         }
 
+
         /**
          * 配置headers
          */
         private void setHeadersConfig() {
-            okHttpClientBuilder.addInterceptor(new HeaderInterceptor(headerMaps));
+            if (buildHeadersListener != null) {
+                okHttpClientBuilder.addInterceptor(new HeaderInterceptor() {
+                    @Override
+                    public Map<String, String> buildHeaders() {
+                        return buildHeadersListener.buildHeaders();
+                    }
+                });
+            }
+
         }
 
         /**
@@ -206,10 +241,11 @@ public class OkHttpConfig {
                 } else {
                     cache = new Cache(new File(defaultCachePath), defaultCacheSize);
                 }
+
                 okHttpClientBuilder
                         .cache(cache)
-                        .addInterceptor(new NoNetCacheInterceptor())
-                        .addNetworkInterceptor(new NetCacheInterceptor());
+                        .addInterceptor(new NoNetCacheInterceptor(noNetCacheTime))
+                        .addNetworkInterceptor(new NetCacheInterceptor(cacheTime));
             }
         }
 
@@ -243,7 +279,14 @@ public class OkHttpConfig {
             }
 
             okHttpClientBuilder.sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager);
+        }
 
+        private void setHostnameVerifier() {
+            if (null == hostnameVerifier) {
+                okHttpClientBuilder.hostnameVerifier(SSLUtils.UnSafeHostnameVerifier);
+            } else {
+                okHttpClientBuilder.hostnameVerifier(hostnameVerifier);
+            }
         }
     }
 }

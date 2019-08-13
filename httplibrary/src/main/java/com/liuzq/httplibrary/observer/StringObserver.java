@@ -3,7 +3,7 @@ package com.liuzq.httplibrary.observer;
 import android.text.TextUtils;
 
 import com.liuzq.commlibrary.utils.ToastUtils;
-import com.liuzq.httplibrary.base.BaseStringObserver;
+import com.liuzq.httplibrary.base.BaseObserver;
 
 import io.reactivex.disposables.Disposable;
 
@@ -13,7 +13,7 @@ import io.reactivex.disposables.Disposable;
  *         自定义Observer 处理string回调
  */
 
-public abstract class StringObserver extends BaseStringObserver {
+public abstract class StringObserver extends BaseObserver<String> {
 
     /**
      * 失败回调

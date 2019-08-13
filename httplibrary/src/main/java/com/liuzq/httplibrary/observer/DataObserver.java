@@ -3,7 +3,7 @@ package com.liuzq.httplibrary.observer;
 import android.text.TextUtils;
 
 import com.liuzq.commlibrary.utils.ToastUtils;
-import com.liuzq.httplibrary.base.BaseDataObserver;
+import com.liuzq.httplibrary.base.BaseObserver;
 import com.liuzq.httplibrary.bean.BaseData;
 
 import io.reactivex.disposables.Disposable;
@@ -26,7 +26,7 @@ import io.reactivex.disposables.Disposable;
  * }
  */
 
-public abstract class DataObserver<T> extends BaseDataObserver<T> {
+public abstract class DataObserver<T> extends BaseObserver<BaseData<T>> {
 
     /**
      * 失败回调
