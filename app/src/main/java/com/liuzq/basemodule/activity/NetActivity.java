@@ -34,6 +34,11 @@ import com.liuzq.httplibrary.observer.DataObserver;
 import com.liuzq.httplibrary.observer.StringObserver;
 import com.liuzq.httplibrary.upload.UploadHelper;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.engine.impl.GlideEngine;
+import com.zxy.tiny.Tiny;
+import com.zxy.tiny.callback.FileCallback;
 //import com.zhihu.matisse.Matisse;
 //import com.zhihu.matisse.MimeType;
 //import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -109,12 +114,12 @@ public class NetActivity extends AppCompatActivity {
             case R.id.upload_one_pic:
                 MAX_SELECTABLE = 1;
                 IS_USE_GLOBAL_CONFIG = false;
-//                selectPhotoWithPermission(MAX_SELECTABLE);
+                selectPhotoWithPermission(MAX_SELECTABLE);
                 break;
             case R.id.upload_more_pic:
                 MAX_SELECTABLE = 9;
                 IS_USE_GLOBAL_CONFIG = false;
-//                selectPhotoWithPermission(MAX_SELECTABLE);
+                selectPhotoWithPermission(MAX_SELECTABLE);
                 break;
             case R.id.douan_api_http:
                 changeUrl();
@@ -289,6 +294,7 @@ public class NetActivity extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        LogUtils.d(String.format("全局方式请求，success：%s",s));
                         response.setText(String.format("全局方式请求，success：%s",s));
                     }
                 });
@@ -319,66 +325,66 @@ public class NetActivity extends AppCompatActivity {
                 });
     }
 
-//    @SuppressLint("CheckResult")
-//    private void selectPhotoWithPermission(final int maxSelectable) {
-//        permissions.request(Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                .subscribe(new Consumer<Boolean>() {
-//                    @Override
-//                    public void accept(Boolean aBoolean) throws Exception {
-//                        if (aBoolean) {
-//                            // All requested permissions are granted
-//                            selectPhoto(maxSelectable);
-//                        } else {
-//                            // At least one permission is denied
-//                            Toast.makeText(NetActivity.this, "请授权", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-//    }
-//
-//
-//    /**
-//     * 选择图片
-//     */
-//    private void selectPhoto(int maxSelectable) {
-//        Matisse.from(NetActivity.this)
-//                .choose(MimeType.ofAll())
-//                .countable(true)
-//                .maxSelectable(maxSelectable)
-//                .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
-//                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-//                .thumbnailScale(0.85f)
-//                .imageEngine(new GlideEngine())
-//                .forResult(REQUEST_CODE_CHOOSE);
-//    }
+    @SuppressLint("CheckResult")
+    private void selectPhotoWithPermission(final int maxSelectable) {
+        permissions.request(Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(new Consumer<Boolean>() {
+                    @Override
+                    public void accept(Boolean aBoolean) throws Exception {
+                        if (aBoolean) {
+                            // All requested permissions are granted
+                            selectPhoto(maxSelectable);
+                        } else {
+                            // At least one permission is denied
+                            Toast.makeText(NetActivity.this, "请授权", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+    /**
+     * 选择图片
+     */
+    private void selectPhoto(int maxSelectable) {
+        Matisse.from(NetActivity.this)
+                .choose(MimeType.ofAll())
+                .countable(true)
+                .maxSelectable(maxSelectable)
+                .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
+                .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+                .thumbnailScale(0.85f)
+                .imageEngine(new GlideEngine())
+                .forResult(REQUEST_CODE_CHOOSE);
+    }
 
     private List<Uri> mSelected;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
-//            mSelected = Matisse.obtainResult(data);
-//            final List<String> paths = new ArrayList<>();
-//            Log.d("Matisse", "mSelected: " + mSelected);
+        if (requestCode == REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
+            mSelected = Matisse.obtainResult(data);
+            final List<String> paths = new ArrayList<>();
+            Log.d("Matisse", "mSelected: " + mSelected);
 
-//            Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
-//            for (int i = 0; i < mSelected.size(); i++) {
-//                //异步压缩文件
-//                Tiny.getInstance().source(mSelected.get(i)).asFile().withOptions(options).compress(new FileCallback() {
-//                    @Override
-//                    public void callback(boolean isSuccess, String outfile, Throwable t) {
-//                        paths.add(outfile);
-//                        if (paths.size() == mSelected.size()) {
-//                            if (IS_USE_GLOBAL_CONFIG) {
-//                                uploadImgWithGlobalConfig(paths);
-//                            } else {
-//                                uploadImgs(paths);
-//                            }
-//                        }
-//                    }
-//                });
-//            }
-//        }
+            Tiny.FileCompressOptions options = new Tiny.FileCompressOptions();
+            for (int i = 0; i < mSelected.size(); i++) {
+                //异步压缩文件
+                Tiny.getInstance().source(mSelected.get(i)).asFile().withOptions(options).compress(new FileCallback() {
+                    @Override
+                    public void callback(boolean isSuccess, String outfile, Throwable t) {
+                        paths.add(outfile);
+                        if (paths.size() == mSelected.size()) {
+                            if (IS_USE_GLOBAL_CONFIG) {
+                                uploadImgWithGlobalConfig(paths);
+                            } else {
+                                uploadImgs(paths);
+                            }
+                        }
+                    }
+                });
+            }
+        }
     }
 }
