@@ -70,19 +70,25 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
 
-    //1.1.0 API改动过大，老用户升级需谨慎
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-18'
-    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-18'//没有使用特殊Header，可以不加这行
+    // 1.1.0 API改动过大，老用户升级需谨慎
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-18'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-18'//没有使用特殊Header，可以不加这行
 //    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'//版本 23以上（必须）
-    //RecyclerView万能适配器
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.43-alpha1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    //rxpermissions 权限
+    // RecyclerView万能适配器
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+    api 'com.android.support:recyclerview-v7:27.1.1'
+    // rxpermissions 权限
     api 'com.github.tbruyelle:rxpermissions:0.10.2'
     // A well-designed local image and video selector for Android
     api 'com.zhihu.android:matisse:0.5.2-beta3'
     // glide
-    api 'com.github.bumptech.glide:glide:3.8.0'
+    api 'com.github.bumptech.glide:glide:4.9.0'
     // an image compression framework.
     api 'com.zxy.android:tiny:1.1.0'
+    // 基础依赖包，必须要依赖
+    api 'com.gyf.immersionbar:immersionbar:3.0.0-beta05'
+    // fragment快速实现（可选）
+    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta05'
+    // 通用，功能全面的自定义标题栏，支持沉浸式标题栏，颜色渐变，miui9
+    api 'com.wuhenzhizao:titlebar:1.1.4'
 }

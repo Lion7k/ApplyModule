@@ -1,1 +1,1 @@
-include ':app', ':commlibrary', ':httplibrary'
+include ':app', ':commlibrary', ':rxhttp', ':statusview', ':bottombar'

@@ -2,7 +2,7 @@ package com.liuzq.basemodule.api;
 
 
 import com.liuzq.basemodule.url.AppUrlConfig;
-import com.liuzq.httplibrary.RxHttpUtils;
+import com.liuzq.rxhttp.RxHttpUtils;
 
 /**
  * <pre>

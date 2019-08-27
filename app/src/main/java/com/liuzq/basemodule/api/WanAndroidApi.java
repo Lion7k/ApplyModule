@@ -3,7 +3,7 @@ package com.liuzq.basemodule.api;
 
 import com.liuzq.basemodule.bean.BannerBean;
 import com.liuzq.basemodule.bean.HotBean;
-import com.liuzq.httplibrary.bean.BaseData;
+import com.liuzq.rxhttp.bean.BaseData;
 
 import java.util.List;
 

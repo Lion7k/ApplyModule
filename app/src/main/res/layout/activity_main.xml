@@ -24,4 +24,24 @@
         android:onClick="my_click"
         android:text="错误布局"
         android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/refresh_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/parcel_view"
+        android:onClick="my_click"
+        android:text="刷新布局"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/fragment_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/parcel_view"
+        android:onClick="my_click"
+        android:text="Fragment"
+        android:textColor="@android:color/white" />
 </LinearLayout>

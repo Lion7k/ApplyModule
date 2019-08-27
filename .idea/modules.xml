@@ -4,8 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AppModule.iml" filepath="$PROJECT_DIR$/AppModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bottombar/bottombar.iml" filepath="$PROJECT_DIR$/bottombar/bottombar.iml" />
       <module fileurl="file://$PROJECT_DIR$/commlibrary/commlibrary.iml" filepath="$PROJECT_DIR$/commlibrary/commlibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/httplibrary/httplibrary.iml" filepath="$PROJECT_DIR$/httplibrary/httplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxhttp/rxhttp.iml" filepath="$PROJECT_DIR$/rxhttp/rxhttp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statusview/statusview.iml" filepath="$PROJECT_DIR$/statusview/statusview.iml" />
     </modules>
   </component>
 </project>

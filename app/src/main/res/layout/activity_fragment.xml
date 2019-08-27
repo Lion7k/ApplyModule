@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        titlebar:centerText="Fragment使用"
+        titlebar:centerTextColor="@color/black"
+        titlebar:centerTextSize="18sp"
+        titlebar:centerType="textView"
+        titlebar:rightText="功能项"
+        titlebar:rightTextSize="14sp"
+        titlebar:rightType="textView"
+        titlebar:fillStatusBar="false"
+        titlebar:showBottomLine="true" />
+
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/vp_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:overScrollMode="never"/>-->
+
+    <com.liuzq.basemodule.widget.FixViewPager
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never" />
+
+
+    <com.liuzq.bottombar.BottomBarLayout
+        android:id="@+id/bbl"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:background="@color/tab_gb"
+        android:gravity="center"
+        app:smoothScroll="false"
+        android:orientation="horizontal">
+
+        <com.liuzq.bottombar.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@mipmap/tab_home_normal"
+            app:iconSelected="@mipmap/tab_home_selected"
+            app:itemMarginTop="-5dp"
+            app:itemText="@string/tab_home"
+            app:itemTextSize="8sp"
+            app:openTouchBg="true"
+            app:textColorNormal="@color/tab_normal_color"
+            app:textColorSelected="@color/tab_selected_color"
+            app:touchDrawable="@drawable/selector_bg" />
+
+        <com.liuzq.bottombar.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@mipmap/tab_video_normal"
+            app:iconSelected="@mipmap/tab_video_selected"
+            app:itemMarginTop="-5dp"
+            app:itemText="@string/tab_video"
+            app:itemTextSize="8sp"
+            app:openTouchBg="true"
+            app:textColorNormal="@color/tab_normal_color"
+            app:textColorSelected="@color/tab_selected_color"
+            app:touchDrawable="@drawable/selector_bg"
+            app:unreadThreshold="999" />
+
+        <com.liuzq.bottombar.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@mipmap/tab_micro_normal"
+            app:iconSelected="@mipmap/tab_micro_selected"
+            app:itemMarginTop="-5dp"
+            app:itemText="@string/tab_micro"
+            app:itemTextSize="8sp"
+            app:openTouchBg="true"
+            app:textColorNormal="@color/tab_normal_color"
+            app:textColorSelected="@color/tab_selected_color"
+            app:touchDrawable="@drawable/selector_bg" />
+
+        <com.liuzq.bottombar.BottomBarItem
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:iconNormal="@mipmap/tab_me_normal"
+            app:iconSelected="@mipmap/tab_me_selected"
+            app:itemMarginTop="-5dp"
+            app:itemText="@string/tab_me"
+            app:itemTextSize="8sp"
+            app:openTouchBg="true"
+            app:textColorNormal="@color/tab_normal_color"
+            app:textColorSelected="@color/tab_selected_color"
+            app:touchDrawable="@drawable/selector_bg" />
+
+    </com.liuzq.bottombar.BottomBarLayout>
+
+</LinearLayout>

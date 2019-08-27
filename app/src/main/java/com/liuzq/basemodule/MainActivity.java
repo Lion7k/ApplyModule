@@ -4,8 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.liuzq.basemodule.activity.ErrorActivity;
-import com.liuzq.basemodule.activity.NetActivity;
+import com.liuzq.basemodule.ui.activity.FragmentActivity;
+import com.liuzq.basemodule.ui.activity.MultipleLayoutActivity;
+import com.liuzq.basemodule.ui.activity.NetActivity;
+import com.liuzq.basemodule.ui.activity.RefreshActivity;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
@@ -22,7 +24,13 @@ public class MainActivity extends AppCompatActivity {
                 NetActivity.startActivity(this);
                 break;
             case R.id.error_layout:
-                ErrorActivity.startActivity(this);
+                MultipleLayoutActivity.startActivity(this);
+                break;
+            case R.id.refresh_layout:
+                RefreshActivity.startActivity(this);
+                break;
+            case R.id.fragment_layout:
+                FragmentActivity.startActivity(this);
                 break;
         }
     }

@@ -19,9 +19,4 @@
         android:id="@+id/menu_content"
         android:title="内容布局"
         app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/menu_customer"
-        android:title="自定义布局"
-        app:showAsAction="never"/>
 </menu>

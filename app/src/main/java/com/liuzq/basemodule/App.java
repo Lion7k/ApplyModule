@@ -4,12 +4,11 @@ import com.liuzq.basemodule.url.AppUrlConfig;
 import com.liuzq.commlibrary.base.BaseApplication;
 import com.liuzq.commlibrary.utils.PreferencesUtils;
 import com.liuzq.commlibrary.utils.ToastUtils;
-import com.liuzq.httplibrary.RxHttpUtils;
-import com.liuzq.httplibrary.config.OkHttpConfig;
-import com.liuzq.httplibrary.cookie.store.SPCookieStore;
-import com.liuzq.httplibrary.gson.GsonAdapter;
-import com.liuzq.httplibrary.interfaces.BuildHeadersListener;
-import com.liuzq.httplibrary.manager.RxUrlManager;
+import com.liuzq.rxhttp.RxHttpUtils;
+import com.liuzq.rxhttp.config.OkHttpConfig;
+import com.liuzq.rxhttp.cookie.store.SPCookieStore;
+import com.liuzq.rxhttp.interfaces.BuildHeadersListener;
+import com.liuzq.rxhttp.manager.RxUrlManager;
 //import com.zxy.tiny.Tiny;
 
 import java.net.URLEncoder;
@@ -17,9 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.OkHttpClient;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by liuzq on 2018/10/18.

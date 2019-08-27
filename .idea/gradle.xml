@@ -9,8 +9,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/bottombar" />
             <option value="$PROJECT_DIR$/commlibrary" />
-            <option value="$PROJECT_DIR$/httplibrary" />
+            <option value="$PROJECT_DIR$/rxhttp" />
+            <option value="$PROJECT_DIR$/statusview" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
