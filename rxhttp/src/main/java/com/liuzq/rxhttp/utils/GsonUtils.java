@@ -89,4 +89,39 @@ public class GsonUtils {
         }
         return map;
     }
+
+    /**
+     * 将Object对象转化成Json数据
+     *
+     * @param obj
+     * @param <T>
+     * @return
+     */
+    public static <T> String toJson(Object obj){
+        String jsonString = "";
+        try {
+            Gson gson = new Gson();
+            jsonString = gson.toJson(obj);
+        }catch (Exception e){
+        }
+        return jsonString;
+    }
+
+
+    /**
+     * 将Object对象转化成Json数据
+     *
+     * @param obj
+     * @param <T>
+     * @return
+     */
+    public static <T> String toJsonTree(Object obj){
+        String jsonString = "";
+        try {
+            Gson gson = new Gson();
+            jsonString = gson.toJsonTree(obj).toString();
+        }catch (Exception e){
+        }
+        return jsonString;
+    }
 }

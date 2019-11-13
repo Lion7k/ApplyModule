@@ -1,7 +1,5 @@
 package com.liuzq.basemodule.ui.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
@@ -11,10 +9,10 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
 import com.liuzq.basemodule.R;
+import com.liuzq.basemodule.ui.activity.base.CommActivity;
 import com.liuzq.basemodule.ui.fragment.TabFragment;
 import com.liuzq.bottombar.BottomBarItem;
 import com.liuzq.bottombar.BottomBarLayout;
-import com.liuzq.commlibrary.base.BaseActivity;
 import com.liuzq.commlibrary.base.BaseFragmentAdapter;
 import com.liuzq.commlibrary.utils.LogUtils;
 import com.lxj.xpopup.XPopup;
@@ -25,12 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class FragmentActivity extends BaseActivity implements BottomBarLayout.OnItemSelectedListener, CommonTitleBar.OnTitleBarListener {
+public class FragmentActivity extends CommActivity implements BottomBarLayout.OnItemSelectedListener, CommonTitleBar.OnTitleBarListener {
 
-    @BindView(R.id.title_bar)
-    CommonTitleBar title_bar;
     @BindView(R.id.vp_content)
     ViewPager mVpContent;
     @BindView(R.id.bbl)
@@ -40,24 +35,9 @@ public class FragmentActivity extends BaseActivity implements BottomBarLayout.On
     private RotateAnimation mRotateAnimation;
     private Handler mHandler = new Handler();
 
-
-    public static void startActivity(Context context) {
-        Intent intent = new Intent(context, FragmentActivity.class);
-        context.startActivity(intent);
-    }
-
     @Override
     public void initData(Bundle bundle) {
 
-    }
-
-    @Override
-    protected void initImmersionBar() {
-        super.initImmersionBar();
-        immersionBar.fitsSystemWindows(true)
-                .statusBarColor(R.color.white)
-                .statusBarDarkFont(true, 0.2f)
-                .init();
     }
 
     @Override
@@ -66,13 +46,7 @@ public class FragmentActivity extends BaseActivity implements BottomBarLayout.On
     }
 
     @Override
-    public void initView(Bundle savedInstanceState, View view) {
-        ButterKnife.bind(this);
-    }
-
-    @Override
     public void initPresenter() {
-
     }
 
     @Override
@@ -213,10 +187,5 @@ public class FragmentActivity extends BaseActivity implements BottomBarLayout.On
                             })
                     .show();
         }
-    }
-
-    @Override
-    public void showError(String msg) {
-
     }
 }

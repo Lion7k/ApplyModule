@@ -1,101 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/response"
-        android:layout_width="wrap_content"
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:hint="网络请求应答"/>
+        titlebar:centerText="RxHttp使用"
+        titlebar:centerTextColor="@color/black"
+        titlebar:centerTextSize="18sp"
+        titlebar:centerType="textView"
+        titlebar:fillStatusBar="false"
+        titlebar:showBottomLine="true" />
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/global_http"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/parcel_view"
-            android:onClick="request"
-            android:text="统一请求---使用全局配置的相关参数"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/global_string_http"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="request"
-            android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/parcel_view"
-            android:textColor="@android:color/white"
-            android:text="统一请求---接受string" />
-
-        <Button
-            android:id="@+id/multiple_http"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/parcel_view"
-            android:textColor="@android:color/white"
-            android:onClick="request"
-            android:text="链式发送多个请求" />
-
-        <Button
-            android:id="@+id/download_http"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/parcel_view"
-            android:textColor="@android:color/white"
-            android:onClick="request"
-            android:text="文件下载" />
-
-        <Button
-            android:id="@+id/download_cancel_http"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/parcel_view"
-            android:textColor="@android:color/white"
-            android:onClick="request"
-            android:enabled="false"
-            android:text="取消下载" />
-
-        <Button
-            android:id="@+id/upload_one_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/parcel_view"
-            android:textColor="@android:color/white"
-            android:onClick="request"
-            android:text="上传单张图片" />
-
-        <Button
-            android:id="@+id/upload_more_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/parcel_view"
-            android:textColor="@android:color/white"
-            android:onClick="request"
-            android:text="上传多张图片" />
-
-        <Button
-            android:id="@+id/douan_api_http"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:background="@drawable/parcel_view"
-            android:textColor="@android:color/white"
-            android:onClick="request"
-            android:text="使用豆瓣baseUrl请求数据" />
-    </LinearLayout>
-
-</android.support.constraint.ConstraintLayout>
+        android:overScrollMode="never"
+        android:scrollbars="none"/>
+</LinearLayout>

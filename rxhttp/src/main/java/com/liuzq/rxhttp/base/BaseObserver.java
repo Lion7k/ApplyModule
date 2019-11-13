@@ -1,5 +1,6 @@
 package com.liuzq.rxhttp.base;
 
+import com.liuzq.commlibrary.utils.LogUtils;
 import com.liuzq.rxhttp.exception.ApiException;
 import com.liuzq.rxhttp.interfaces.ISubscriber;
 import com.liuzq.rxhttp.manager.RxHttpManager;
@@ -41,6 +42,8 @@ public abstract class BaseObserver<T> implements Observer<T>, ISubscriber<T> {
 
     @Override
     public void onSubscribe(@NonNull Disposable d) {
+        LogUtils.d("BaseObserver onSubscribe", setTag());
+
         RxHttpManager.get().add(setTag(), d);
         doOnSubscribe(d);
     }
@@ -53,7 +56,8 @@ public abstract class BaseObserver<T> implements Observer<T>, ISubscriber<T> {
     @Override
     public void onError(@NonNull Throwable e) {
         String error = ApiException.handleException(e).getMessage();
-        setError(error);
+        int code = ApiException.handleException(e).getCode();
+        setError(code, error);
     }
 
     @Override
@@ -65,4 +69,10 @@ public abstract class BaseObserver<T> implements Observer<T>, ISubscriber<T> {
         doOnError(errorMsg);
     }
 
+    /**
+     * 新增
+     */
+    private void setError(int errorCode, String errorMsg) {
+        doOnError(errorCode,errorMsg);
+    }
 }

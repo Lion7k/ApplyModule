@@ -3,4 +3,6 @@
     <string name="page_error">网络开小差了</string>
     <string name="page_error_retry">点击重试</string>
     <string name="page_empty">暂无新数据</string>
+
+    <string name="error_gif">x or y bound size should be at least %1$dpx and file size should be no more than %2$sM</string>
 </resources>

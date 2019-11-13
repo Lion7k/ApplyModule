@@ -5,6 +5,11 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 27
+
+        ndk {
+            // Tiny
+            abiFilters 'armeabi','x86'//or armeabi-v7a、arm64-v8a、x86
+        }
     }
 
     buildTypes {
@@ -81,8 +86,8 @@ dependencies {
     api 'com.github.tbruyelle:rxpermissions:0.10.2'
     // A well-designed local image and video selector for Android
     api 'com.zhihu.android:matisse:0.5.2-beta3'
-    // glide
-    api 'com.github.bumptech.glide:glide:4.9.0'
+    // glide 注意：matisse:0.5.2-beta3 + glide:3.8.0 搭配才不会有问题,不迁移androidx情况下
+    api 'com.github.bumptech.glide:glide:3.8.0'
     // an image compression framework.
     api 'com.zxy.android:tiny:1.1.0'
     // 基础依赖包，必须要依赖

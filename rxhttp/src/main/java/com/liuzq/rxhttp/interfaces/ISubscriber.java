@@ -23,6 +23,15 @@ public interface ISubscriber<T> {
     void doOnError(String errorMsg);
 
     /**
+     * 新增
+     *
+     * 错误回调
+     * @param errorCode 错误码
+     * @param errorMsg 错误信息
+     */
+    void doOnError(int errorCode ,String errorMsg);
+
+    /**
      * 成功回调
      *
      * @param t 泛型

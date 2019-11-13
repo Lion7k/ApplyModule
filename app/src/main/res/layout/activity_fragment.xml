@@ -27,7 +27,7 @@
         <!--android:layout_weight="1"-->
         <!--android:overScrollMode="never"/>-->
 
-    <com.liuzq.basemodule.widget.FixViewPager
+    <com.liuzq.commlibrary.widget.FixViewPager
         android:id="@+id/vp_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"

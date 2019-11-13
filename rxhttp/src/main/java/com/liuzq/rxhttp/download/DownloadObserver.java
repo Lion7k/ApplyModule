@@ -2,6 +2,7 @@ package com.liuzq.rxhttp.download;
 
 import android.annotation.SuppressLint;
 
+import com.liuzq.commlibrary.utils.LogUtils;
 import com.liuzq.rxhttp.base.BaseObserver;
 import com.liuzq.rxhttp.manager.RxHttpManager;
 
@@ -43,6 +44,15 @@ public abstract class DownloadObserver extends BaseObserver<ResponseBody> {
     protected abstract void onError(String errorMsg);
 
     /**
+     * 新增
+     *
+     * 失败回调
+     * @param errorCode 错误码
+     * @param errorMsg 错误信息
+     */
+    protected abstract void onError(int errorCode,String errorMsg);
+
+    /**
      * 成功回调
      *
      * @param filePath filePath
@@ -64,7 +74,13 @@ public abstract class DownloadObserver extends BaseObserver<ResponseBody> {
     }
 
     @Override
+    public void doOnError(int errorCode, String errorMsg) {
+        onError(errorCode, errorMsg);
+    }
+
+    @Override
     public void doOnSubscribe(@NonNull Disposable d) {
+        LogUtils.d("DownloadObserver doOnSubscribe", setTag());
         RxHttpManager.get().add(setTag(), d);
     }
 

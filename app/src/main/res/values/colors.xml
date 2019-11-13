@@ -13,4 +13,7 @@
 
     <color name="unreadTextColor">#00ff00</color>
     <color name="msgTextColor">#00ff00</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="gray_e7">#E7E7E7</color>
 </resources>

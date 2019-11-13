@@ -1,4 +1,4 @@
-package com.liuzq.basemodule.widget;
+package com.liuzq.commlibrary.widget;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 
 /**
  * Created by liuzq on 2018/3/5.
+ * viewpager 不可滑动
  */
 
 public class FixViewPager extends ViewPager {
