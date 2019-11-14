@@ -1,6 +1,5 @@
 package com.liuzq.rxhttp.base;
 
-import com.liuzq.commlibrary.utils.LogUtils;
 import com.liuzq.rxhttp.exception.ApiException;
 import com.liuzq.rxhttp.interfaces.ISubscriber;
 import com.liuzq.rxhttp.manager.RxHttpManager;

@@ -1,5 +1,6 @@
 package com.liuzq.rxhttp.factory;
 
+
 import com.liuzq.rxhttp.manager.RxUrlManager;
 import com.liuzq.rxhttp.retrofit.RetrofitBuilder;
 
@@ -11,9 +12,11 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 
 /**
- *
+ * <pre>
+ * </pre>
  */
 public class ApiFactory {
+
     private volatile static ApiFactory instance;
 
     /**
@@ -97,4 +100,5 @@ public class ApiFactory {
     private static <A> String getApiKey(String baseUrlKey, Class<A> apiClass) {
         return String.format("%s_%s", baseUrlKey, apiClass);
     }
+
 }

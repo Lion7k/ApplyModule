@@ -15,8 +15,11 @@ android {
 }
 
 dependencies {
-    api "io.reactivex.rxjava2:rxjava:2.2.13"
-    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+//    api "io.reactivex.rxjava2:rxjava:2.2.13"
+//    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    // Rxjava配合的Retrofit必须使用此版本
+    api "io.reactivex.rxjava2:rxjava:2.1.12"
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.retrofit2:converter-gson:2.4.0'
     api 'com.squareup.retrofit2:converter-scalars:2.4.0'

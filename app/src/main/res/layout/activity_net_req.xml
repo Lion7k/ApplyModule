@@ -27,4 +27,5 @@
         android:layout_height="0dp"
         android:padding="@dimen/dp_10"
         android:hint="网络请求应答"/>
+
 </LinearLayout>
