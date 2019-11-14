@@ -25,7 +25,7 @@ public class DownloadManager {
      * @return 返回
      * @throws IOException
      */
-    public File saveFile(ResponseBody response, final String destFileName,String destFileDir, ProgressListener progressListener) throws IOException {
+    public File saveFile(ResponseBody response, String destFileName, String destFileDir, ProgressListener progressListener) throws IOException {
 
         String defaultDestFileDir = RxHttpUtils.getContext().getExternalFilesDir(null) + File.separator;
 

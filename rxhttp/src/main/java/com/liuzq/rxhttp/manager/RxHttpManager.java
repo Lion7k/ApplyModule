@@ -100,8 +100,8 @@ public class RxHttpManager implements IRxHttpManager<Object> {
             CompositeDisposable disposable = entry.getValue();
             //如果直接使用map的remove方法会报这个错误java.util.ConcurrentModificationException
             //所以要使用迭代器的方法remove
-            if (null != disposable){
-                if (!disposable.isDisposed()){
+            if (null != disposable) {
+                if (!disposable.isDisposed()) {
                     disposable.dispose();
                     it.remove();
                 }

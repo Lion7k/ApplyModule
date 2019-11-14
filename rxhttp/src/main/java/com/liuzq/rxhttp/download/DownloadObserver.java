@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import com.liuzq.commlibrary.utils.LogUtils;
 import com.liuzq.rxhttp.base.BaseObserver;
+import com.liuzq.rxhttp.exception.ApiException;
 import com.liuzq.rxhttp.manager.RxHttpManager;
 
 import java.io.IOException;
@@ -44,15 +45,6 @@ public abstract class DownloadObserver extends BaseObserver<ResponseBody> {
     protected abstract void onError(String errorMsg);
 
     /**
-     * 新增
-     *
-     * 失败回调
-     * @param errorCode 错误码
-     * @param errorMsg 错误信息
-     */
-    protected abstract void onError(int errorCode,String errorMsg);
-
-    /**
      * 成功回调
      *
      * @param filePath filePath
@@ -74,13 +66,7 @@ public abstract class DownloadObserver extends BaseObserver<ResponseBody> {
     }
 
     @Override
-    public void doOnError(int errorCode, String errorMsg) {
-        onError(errorCode, errorMsg);
-    }
-
-    @Override
-    public void doOnSubscribe(@NonNull Disposable d) {
-        LogUtils.d("DownloadObserver doOnSubscribe", setTag());
+    public void doOnSubscribe(Disposable d) {
         RxHttpManager.get().add(setTag(), d);
     }
 
@@ -92,12 +78,11 @@ public abstract class DownloadObserver extends BaseObserver<ResponseBody> {
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<ResponseBody>() {
                     @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
+                    public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(@NonNull ResponseBody responseBody) {
+                    public void onNext(ResponseBody responseBody) {
                         try {
                             new DownloadManager().saveFile(responseBody, fileName, destFileDir, new ProgressListener() {
                                 @Override
@@ -114,7 +99,7 @@ public abstract class DownloadObserver extends BaseObserver<ResponseBody> {
                                             });
                                 }
                             });
-                        } catch (IOException e) {
+                        } catch (final IOException e) {
                             Observable
                                     .just(e.getMessage())
                                     .observeOn(AndroidSchedulers.mainThread())
@@ -128,7 +113,7 @@ public abstract class DownloadObserver extends BaseObserver<ResponseBody> {
                     }
 
                     @Override
-                    public void onError(@NonNull Throwable e) {
+                    public void onError(Throwable e) {
 
                     }
 

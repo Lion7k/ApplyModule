@@ -178,7 +178,7 @@ public class SSLUtils {
         @Override
         public X509Certificate[] getAcceptedIssuers() {
 
-            return new X509Certificate[]{};
+            return new java.security.cert.X509Certificate[]{};
         }
     };
 

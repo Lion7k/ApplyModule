@@ -267,7 +267,7 @@ public class NetReqActivity extends CommActivity<RxPresenterImpl> implements RxC
     }
 
     @Override
-    public void downloadHttpFail(String message) {
+    public void downloadHttpFail(int code, String message) {
         IS_DOWNLOAD_FILE = true;
         response.setText(DataUtils.strFormat("文件下载，error：\n%s", message));
     }

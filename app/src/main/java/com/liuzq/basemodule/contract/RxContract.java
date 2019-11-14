@@ -38,7 +38,7 @@ public class RxContract {
 
         void changeUrlFail(int code, String message);
 
-        void downloadHttpFail(String message);
+        void downloadHttpFail(int code, String message);
 
         void uploadImgWithGlobalConfigFail(int code, String message);
 

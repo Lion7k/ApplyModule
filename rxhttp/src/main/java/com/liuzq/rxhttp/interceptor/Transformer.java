@@ -1,6 +1,6 @@
 package com.liuzq.rxhttp.interceptor;
 
-import android.app.Dialog;
+import com.liuzq.rxhttp.interfaces.ILoadingView;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -33,11 +33,11 @@ public class Transformer {
     /**
      * 带参数  显示loading对话框
      *
-     * @param dialog loading
-     * @param <T>    泛型
+     * @param loadingView loading
+     * @param <T>         泛型
      * @return 返回Observable
      */
-    public static <T> ObservableTransformer<T, T> switchSchedulers(final Dialog dialog) {
+    public static <T> ObservableTransformer<T, T> switchSchedulers(final ILoadingView loadingView) {
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(@NonNull Observable<T> upstream) {
@@ -46,9 +46,10 @@ public class Transformer {
                         .unsubscribeOn(Schedulers.io())
                         .doOnSubscribe(new Consumer<Disposable>() {
                             @Override
-                            public void accept(Disposable disposable) throws Exception {
-                                if (dialog != null)
-                                    dialog.show();
+                            public void accept(@NonNull Disposable disposable) throws Exception {
+                                if (loadingView != null) {
+                                    loadingView.showLoadingView();
+                                }
                             }
                         })
                         .subscribeOn(AndroidSchedulers.mainThread())
@@ -56,8 +57,9 @@ public class Transformer {
                         .doFinally(new Action() {
                             @Override
                             public void run() throws Exception {
-                                if (dialog != null)
-                                    dialog.dismiss();
+                                if (loadingView != null) {
+                                    loadingView.hideLoadingView();
+                                }
                             }
                         });
             }

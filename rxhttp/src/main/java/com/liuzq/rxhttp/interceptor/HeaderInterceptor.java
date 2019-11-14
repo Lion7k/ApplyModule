@@ -24,7 +24,7 @@ public abstract class HeaderInterceptor implements Interceptor {
             return chain.proceed(request);
         } else {
             Response response = chain.proceed(request.newBuilder()
-            .headers(buildHeaders(request,headers)).build());
+            .headers(buildHeaders(request, headers)).build());
             return response;
         }
     }

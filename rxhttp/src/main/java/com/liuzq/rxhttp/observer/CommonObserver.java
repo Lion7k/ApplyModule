@@ -27,15 +27,6 @@ public abstract class CommonObserver<T> extends BaseObserver<T> {
     protected abstract void onError(String errorMsg);
 
     /**
-     * 新增
-     *
-     * 失败回调
-     * @param errorCode 错误码
-     * @param errorMsg 错误信息
-     */
-    protected abstract void onError(int errorCode,String errorMsg);
-
-    /**
      * 成功回调
      *
      * @param t
@@ -53,14 +44,6 @@ public abstract class CommonObserver<T> extends BaseObserver<T> {
             ToastUtils.show(errorMsg);
         }
         onError(errorMsg);
-    }
-
-    @Override
-    public void doOnError(int errorCode, String errorMsg) {
-        if (!isHideToast() && !TextUtils.isEmpty(errorMsg)) {
-            ToastUtils.show(errorMsg);
-        }
-        onError(errorCode, errorMsg);
     }
 
     @Override

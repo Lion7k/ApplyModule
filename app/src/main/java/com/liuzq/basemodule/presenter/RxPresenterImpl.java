@@ -1,9 +1,6 @@
 package com.liuzq.basemodule.presenter;
 
-
-import android.app.Dialog;
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
 
 import com.liuzq.basemodule.api.ApiHelper;
 import com.liuzq.basemodule.api.DouBanApi;
@@ -17,10 +14,12 @@ import com.liuzq.rxhttp.RxHttpUtils;
 import com.liuzq.rxhttp.bean.BaseData;
 import com.liuzq.rxhttp.download.DownloadObserver;
 import com.liuzq.rxhttp.interceptor.Transformer;
+import com.liuzq.rxhttp.interfaces.ILoadingView;
 import com.liuzq.rxhttp.observer.CommonObserver;
 import com.liuzq.rxhttp.observer.DataObserver;
 import com.liuzq.rxhttp.observer.StringObserver;
 import com.liuzq.rxhttp.upload.UploadHelper;
+import com.liuzq.rxhttp.widget.LoadingDialog;
 
 import java.util.List;
 
@@ -59,11 +58,7 @@ public class RxPresenterImpl extends BasePresenterImpl implements RxContract.Pre
 
                     @Override
                     protected void onError(String errorMsg) {
-                    }
-
-                    @Override
-                    protected void onError(int errorCode, String errorMsg) {
-                        mView.globalHttpFail(errorCode, errorMsg);
+                        mView.globalHttpFail(0, errorMsg);
                     }
 
                     @Override
@@ -91,11 +86,7 @@ public class RxPresenterImpl extends BasePresenterImpl implements RxContract.Pre
 
                     @Override
                     protected void onError(String errorMsg) {
-                    }
-
-                    @Override
-                    protected void onError(int errorCode, String errorMsg) {
-                        mView.globalStringHttpFail(errorCode, errorMsg);
+                        mView.globalStringHttpFail(0, errorMsg);
                     }
 
                     @Override
@@ -124,11 +115,7 @@ public class RxPresenterImpl extends BasePresenterImpl implements RxContract.Pre
                 .subscribe(new StringObserver() {
                     @Override
                     protected void onError(String errorMsg) {
-                    }
-
-                    @Override
-                    protected void onError(int errorCode, String errorMsg) {
-                        mView.multipleHttpFail(errorCode, errorMsg);
+                        mView.multipleHttpFail(0, errorMsg);
                     }
 
                     @Override
@@ -149,11 +136,7 @@ public class RxPresenterImpl extends BasePresenterImpl implements RxContract.Pre
                 .subscribe(new CommonObserver<Top250Bean>() {
                     @Override
                     protected void onError(String errorMsg) {
-                    }
-
-                    @Override
-                    protected void onError(int errorCode, String errorMsg) {
-                        mView.changeUrlFail(errorCode, errorMsg);
+                        mView.changeUrlFail(0, errorMsg);
                     }
 
                     @Override
@@ -181,11 +164,7 @@ public class RxPresenterImpl extends BasePresenterImpl implements RxContract.Pre
 
                     @Override
                     protected void onError(String errorMsg) {
-                        mView.downloadHttpFail(errorMsg);
-                    }
-
-                    @Override
-                    protected void onError(int errorCode, String errorMsg) {
+                        mView.downloadHttpFail(0, errorMsg);
                     }
 
                     @Override
@@ -215,11 +194,7 @@ public class RxPresenterImpl extends BasePresenterImpl implements RxContract.Pre
 
                     @Override
                     protected void onError(String errorMsg) {
-                    }
-
-                    @Override
-                    protected void onError(int errorCode, String errorMsg) {
-                        mView.uploadImgWithGlobalConfigFail(errorCode, errorMsg);
+                        mView.uploadImgWithGlobalConfigFail(0, errorMsg);
                     }
 
                     @Override
@@ -241,11 +216,7 @@ public class RxPresenterImpl extends BasePresenterImpl implements RxContract.Pre
                 .subscribe(new CommonObserver<ResponseBody>() {
                     @Override
                     protected void onError(String errorMsg) {
-                    }
-
-                    @Override
-                    protected void onError(int errorCode, String errorMsg) {
-                        mView.uploadImgsFail(errorCode, errorMsg);
+                        mView.uploadImgsFail(0, errorMsg);
                     }
 
                     @Override
@@ -258,7 +229,7 @@ public class RxPresenterImpl extends BasePresenterImpl implements RxContract.Pre
 
     protected RxContract.View mView;
     protected Context mContext;
-    protected Dialog loading_dialog;
+    protected ILoadingView loading_dialog;
 
     @Override
     public void attachView(RxContract.View  view) {
@@ -272,7 +243,7 @@ public class RxPresenterImpl extends BasePresenterImpl implements RxContract.Pre
 
     @Override
     public void attachContext(Context mContext) {
-        loading_dialog = new AlertDialog.Builder(mContext).setMessage("loading...").create();
+        loading_dialog = new LoadingDialog(mContext);
         this.mContext = mContext;
     }
 }
