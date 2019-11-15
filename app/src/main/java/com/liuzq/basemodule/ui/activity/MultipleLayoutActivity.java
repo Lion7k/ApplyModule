@@ -1,11 +1,13 @@
 package com.liuzq.basemodule.ui.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
 import com.liuzq.basemodule.R;
-import com.liuzq.basemodule.ui.activity.base.CommActivity;
+import com.liuzq.commlibrary.base.BaseActivity;
 import com.liuzq.statusview.StatusView;
 import com.liuzq.statusview.StatusViewBuilder;
 import com.lxj.xpopup.XPopup;
@@ -13,8 +15,9 @@ import com.lxj.xpopup.interfaces.OnSelectListener;
 import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class MultipleLayoutActivity extends CommActivity implements CommonTitleBar.OnTitleBarListener {
+public class MultipleLayoutActivity extends BaseActivity implements CommonTitleBar.OnTitleBarListener {
     private final String TAG = this.getClass().getSimpleName();
 
     @BindView(R.id.title_bar)
@@ -22,14 +25,33 @@ public class MultipleLayoutActivity extends CommActivity implements CommonTitleB
 
     private StatusView statusView;
 
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, MultipleLayoutActivity.class);
+        context.startActivity(intent);
+    }
+
     @Override
     public void initData(Bundle bundle) {
 
     }
 
     @Override
+    protected void initImmersionBar() {
+        super.initImmersionBar();
+        immersionBar.fitsSystemWindows(true)
+                .statusBarColor(R.color.white)
+                .statusBarDarkFont(true, 0.2f)
+                .init();
+    }
+
+    @Override
     public int bindLayout() {
         return R.layout.activity_multiple_layout;
+    }
+
+    @Override
+    public void initView(Bundle savedInstanceState, View view) {
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -54,7 +76,7 @@ public class MultipleLayoutActivity extends CommActivity implements CommonTitleB
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                statusView.showEmptyView();
+                                statusView.showErrorView();
                             }
                         }, 1500);
                     }
@@ -66,7 +88,7 @@ public class MultipleLayoutActivity extends CommActivity implements CommonTitleB
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                statusView.showContentView();
+                                statusView.showEmptyView();
                             }
                         }, 1500);
                     }
@@ -76,9 +98,14 @@ public class MultipleLayoutActivity extends CommActivity implements CommonTitleB
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                statusView.showErrorView();
+                statusView.showContentView();
             }
         }, 1500);
+    }
+
+    @Override
+    public void showError(String msg) {
+
     }
 
     @Override
