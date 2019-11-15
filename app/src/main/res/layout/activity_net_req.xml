@@ -15,10 +15,11 @@
         titlebar:centerTextColor="@color/black"
         titlebar:centerTextSize="18sp"
         titlebar:centerType="textView"
-        titlebar:fillStatusBar="false"
-        titlebar:showBottomLine="true"
+        titlebar:rightText="功能项"
+        titlebar:rightTextSize="14sp"
         titlebar:rightType="textView"
-        titlebar:rightText="功能项"/>
+        titlebar:fillStatusBar="false"
+        titlebar:showBottomLine="true" />
 
     <TextView
         android:id="@+id/response"

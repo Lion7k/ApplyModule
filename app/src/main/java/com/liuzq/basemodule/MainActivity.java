@@ -10,6 +10,7 @@ import com.liuzq.basemodule.ui.activity.MultipleLayoutActivity;
 import com.liuzq.basemodule.ui.activity.NetActivity;
 import com.liuzq.basemodule.ui.activity.NetReqActivity;
 import com.liuzq.basemodule.ui.activity.RefreshActivity;
+import com.liuzq.basemodule.ui.activity.WebActivity;
 import com.liuzq.basemodule.ui.activity.base.CommActivity;
 import com.liuzq.basemodule.ui.activity.bean.MainData;
 import com.liuzq.basemodule.ui.adapter.MainAdapter;
@@ -75,6 +76,10 @@ public class MainActivity extends CommActivity implements BaseQuickAdapter.OnIte
         data.setName("bottom bar");
         datas.add(data);
 
+        data = new MainData();
+        data.setName("webview");
+        datas.add(data);
+
         return datas;
     }
 
@@ -96,6 +101,10 @@ public class MainActivity extends CommActivity implements BaseQuickAdapter.OnIte
             case 3:
                 // bottombar demo
                 ActivityUtils.skipActivity(this, FragmentActivity.class);
+                break;
+            case 4:
+                // webview
+                ActivityUtils.skipActivity(this, WebActivity.class);
                 break;
         }
     }
