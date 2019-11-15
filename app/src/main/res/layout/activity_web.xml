@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        titlebar:centerText="HYBRIS"
+        titlebar:centerTextColor="@color/black"
+        titlebar:centerTextSize="18sp"
+        titlebar:centerType="textView"
+        titlebar:fillStatusBar="false"
+        titlebar:showBottomLine="true" />
+
+</LinearLayout>
