@@ -18,7 +18,7 @@ public class LogUtils {
     private static final int MIN_STACK_OFFSET = 3;// starts at this class after two native calls
     private static final int MAX_STACK_TRACE_SIZE = 131071; //128 KB - 1
     private static final int METHOD_COUNT = 0; // show method count in trace
-    private static boolean isDebug = BuildConfig.LOG_DEBUG;// 是否调试模式
+    private static boolean isDebug = true;// 是否调试模式
     private static String debugTag = BuildConfig.VERSION_NAME;// LogCat的标记
 
     public static void setIsDebug(boolean isDebug) {

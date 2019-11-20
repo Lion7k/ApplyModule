@@ -12,55 +12,6 @@ android {
         }
     }
 
-    buildTypes {
-        //开发版
-        debug {
-            // 显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "true"
-//            signingConfig signingConfigs.release
-            versionNameSuffix "_debug"
-            minifyEnabled false   //是否混淆
-            zipAlignEnabled false //使包内未压缩的数据有序的排列
-//            shrinkResources false // 移除无用的resource文件
-            debuggable true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        //内部测试
-        alpha {
-            // 显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "true"
-//            signingConfig signingConfigs.release
-            versionNameSuffix "_正式版"
-            minifyEnabled false
-            zipAlignEnabled false
-//            shrinkResources false
-            debuggable true
-        }
-        //公开测试
-        beta {
-            // 不显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "false"
-            versionNameSuffix "_beta"
-//            signingConfig signingConfigs.release
-            minifyEnabled true
-            zipAlignEnabled true
-            // 移除无用的resource文件
-//            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        //正式
-        release {
-            // 不显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "false"
-//            signingConfig signingConfigs.release
-            minifyEnabled true
-            zipAlignEnabled true
-            // 移除无用的resource文件
-//            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
     // 这个是解决lint报错的代码
     lintOptions {
         abortOnError false
@@ -69,6 +20,22 @@ android {
         disable 'MissingTranslation'
     }
 }
+
+task makeJar(type: Copy) {
+//删除存在的
+    delete'build/libs/commlibrary.jar'
+//设置拷贝的文件
+    from('build/intermediates/packaged-classes/release/')
+//打进jar包后的文件目录
+    into('build/libs/')
+//将classes.jar放入build/libs/目录下
+//include ,exclude参数来设置过滤
+//（我们只关心classes.jar这个文件）
+    include('classes.jar')
+//重命名
+    rename ('classes.jar','commlibrary.jar')
+}
+makeJar.dependsOn(build)
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
