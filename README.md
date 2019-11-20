@@ -1,5 +1,5 @@
 # ApplyModule
-助力打造一个搭建android应用框架的工具模块，包含RxHttp(RxJava2 + Retrofit2 + OkHttp3)网络请求、Multistate Layout多状态布局（error、empty、loading、content）、
+助力打造一个搭建android应用框架的工具模块组，包含RxHttp(RxJava2 + Retrofit2 + OkHttp3)网络请求、Multistate Layout多状态布局（error、empty、loading、content）、
 Bottom Bar一个自定义的视图组件，模仿新材料设计底部导航模式、非常实用的Utils类。
 
  ### 特点
