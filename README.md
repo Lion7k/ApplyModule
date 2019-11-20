@@ -26,7 +26,7 @@ allprojects {
 ```gradle
 dependencies {
 	//基础工具库（必选）
- implementation 'com.github.Lion7k.ApplyModule:commlibrary:v1.0.1'
+ 	implementation 'com.github.Lion7k.ApplyModule:commlibrary:v1.0.1'
 
 	//rxhttp网络请求库（可选）
 	implementation 'com.github.Lion7k.ApplyModule:rxhttp:v1.0.1'
@@ -35,7 +35,7 @@ dependencies {
 	implementation 'com.github.Lion7k.ApplyModule:statusview:v1.0.1'
 
 	//定义的视图组件，模仿新材料设计底部导航模式（可选）
- implementation 'com.github.Lion7k.ApplyModule:bottombar:v1.0.1'
+ 	implementation 'com.github.Lion7k.ApplyModule:bottombar:v1.0.1'
 }
 ```
 ## Step 3. 在application类里边进行初始化配置
