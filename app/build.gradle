@@ -48,6 +48,8 @@ dependencies {
     implementation project(':rxhttp')
     implementation project(':statusview')
     implementation project(':bottombar')
+    implementation project(':flowlayout')
+    implementation project(':addsubtractview')
 
     //注解
     implementation 'com.jakewharton:butterknife:8.8.1'

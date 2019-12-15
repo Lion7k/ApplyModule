@@ -18,7 +18,8 @@
         android:resizeableActivity="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.WebActivity"></activity>
+        <activity android:name=".ui.activity.AddSubtractActivity"></activity>
+        <activity android:name=".ui.activity.WebActivity" />
         <activity
             android:name=".ui.activity.NetReqActivity"
             android:configChanges="orientation|screenSize|keyboardHidden" />
@@ -42,6 +43,7 @@
         <activity android:name=".ui.activity.NetActivity" />
         <activity android:name=".ui.activity.MultipleLayoutActivity" />
         <activity android:name=".ui.activity.RefreshActivity" />
+        <activity android:name=".ui.activity.FlowLayoutActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

@@ -5,9 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.liuzq.basemodule.ui.activity.AddSubtractActivity;
+import com.liuzq.basemodule.ui.activity.FlowLayoutActivity;
 import com.liuzq.basemodule.ui.activity.FragmentActivity;
 import com.liuzq.basemodule.ui.activity.MultipleLayoutActivity;
-import com.liuzq.basemodule.ui.activity.NetActivity;
 import com.liuzq.basemodule.ui.activity.NetReqActivity;
 import com.liuzq.basemodule.ui.activity.RefreshActivity;
 import com.liuzq.basemodule.ui.activity.WebActivity;
@@ -80,6 +81,14 @@ public class MainActivity extends CommActivity implements BaseQuickAdapter.OnIte
         data.setName("webview");
         datas.add(data);
 
+        data = new MainData();
+        data.setName("flowlayout");
+        datas.add(data);
+
+        data = new MainData();
+        data.setName("addsubtractview");
+        datas.add(data);
+
         return datas;
     }
 
@@ -103,8 +112,15 @@ public class MainActivity extends CommActivity implements BaseQuickAdapter.OnIte
                 ActivityUtils.skipActivity(this, FragmentActivity.class);
                 break;
             case 4:
-                // webview
+                // webview demo
                 ActivityUtils.skipActivity(this, WebActivity.class);
+                break;
+            case 5:
+                // flowlayout demo
+                ActivityUtils.skipActivity(this, FlowLayoutActivity.class);
+                break;
+            case 6:
+                ActivityUtils.skipActivity(this, AddSubtractActivity.class);
                 break;
         }
     }

@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        titlebar:centerText="FlowLayout使用"
+        titlebar:centerTextColor="@color/black"
+        titlebar:centerTextSize="18sp"
+        titlebar:centerType="textView"
+        titlebar:fillStatusBar="false"
+        titlebar:showBottomLine="true" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/id_tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        android:background="#ffffff"
+        app:tabIndicatorColor="#0ddcff"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="#0ddcff"
+        app:tabTextColor="#000000"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>

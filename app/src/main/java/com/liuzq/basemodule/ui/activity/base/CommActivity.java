@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 public abstract class CommActivity<T extends BasePresenter>  extends BaseActivity<T> {
 
     @BindView(R.id.title_bar)
-    protected CommonTitleBar title_bar;
+    public CommonTitleBar title_bar;
 
     @Override
     protected void initImmersionBar() {

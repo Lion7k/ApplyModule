@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AppModule.iml" filepath="$PROJECT_DIR$/AppModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ApplyModule.iml" filepath="$PROJECT_DIR$/ApplyModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/addsubtractview/addsubtractview.iml" filepath="$PROJECT_DIR$/addsubtractview/addsubtractview.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/bottombar/bottombar.iml" filepath="$PROJECT_DIR$/bottombar/bottombar.iml" />
       <module fileurl="file://$PROJECT_DIR$/commlibrary/commlibrary.iml" filepath="$PROJECT_DIR$/commlibrary/commlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flowlayout/flowlayout.iml" filepath="$PROJECT_DIR$/flowlayout/flowlayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxhttp/rxhttp.iml" filepath="$PROJECT_DIR$/rxhttp/rxhttp.iml" />
       <module fileurl="file://$PROJECT_DIR$/statusview/statusview.iml" filepath="$PROJECT_DIR$/statusview/statusview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tablayout/tablayout.iml" filepath="$PROJECT_DIR$/tablayout/tablayout.iml" />
     </modules>
   </component>
 </project>

@@ -8,14 +8,18 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/addsubtractview" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/bottombar" />
             <option value="$PROJECT_DIR$/commlibrary" />
+            <option value="$PROJECT_DIR$/flowlayout" />
             <option value="$PROJECT_DIR$/rxhttp" />
             <option value="$PROJECT_DIR$/statusview" />
+            <option value="$PROJECT_DIR$/tablayout" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>
