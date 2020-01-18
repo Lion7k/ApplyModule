@@ -65,6 +65,16 @@ public class DataUtils {
      * @param obj 对象
      * @return {@code true}: 为空<br>{@code false}: 不为空
      */
+    public static boolean isNotEmpty(Object obj) {
+        return !isEmpty(obj);
+    }
+
+    /**
+     * 判断对象是否为空
+     *
+     * @param obj 对象
+     * @return {@code true}: 为空<br>{@code false}: 不为空
+     */
     public static boolean isEmpty(Object obj) {
         if (obj == null) {
             return true;

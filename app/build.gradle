@@ -50,6 +50,7 @@ dependencies {
     implementation project(':bottombar')
     implementation project(':flowlayout')
     implementation project(':addsubtractview')
+    implementation project(":searchbox")
 
     //注解
     implementation 'com.jakewharton:butterknife:8.8.1'

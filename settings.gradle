@@ -1,1 +1,1 @@
-include ':app', ':commlibrary', ':rxhttp', ':statusview', ':bottombar', ':flowlayout', ':tablayout', ':addsubtractview'
+include ':app', ':commlibrary', ':rxhttp', ':statusview', ':bottombar', ':flowlayout', ':tablayout', ':addsubtractview', ':searchbox'
