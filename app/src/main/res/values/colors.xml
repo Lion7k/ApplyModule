@@ -15,5 +15,8 @@
     <color name="msgTextColor">#00ff00</color>
 
     <color name="transparent">#00000000</color>
+    <color name="color_light_blue">#1AA9FA</color>
     <color name="gray_e7">#E7E7E7</color>
+    <color name="gray_99">#999999</color>
+    <color name="gray_33">#333333</color>
 </resources>

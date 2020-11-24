@@ -9,7 +9,7 @@
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        titlebar:centerText="FlowLayout使用"
+        titlebar:centerText="商城加减控件"
         titlebar:centerTextColor="@color/black"
         titlebar:centerTextSize="18sp"
         titlebar:centerType="textView"

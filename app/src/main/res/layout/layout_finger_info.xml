@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/finger_bg">
+
+    <ImageView
+        android:id="@+id/icon_finger"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/icon_dialog_touch_id" />
+
+    <LinearLayout
+        android:id="@+id/text_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/icon_finger"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="15dp"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            android:text="@string/text_retry"/>
+
+        <TextView
+            android:id="@+id/text_title"
+            android:lineSpacingMultiplier="1.3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginRight="14dp"
+            android:layout_marginLeft="14dp"
+            android:textColor="#333333"
+            android:textSize="12sp"
+            android:text="@string/finger_info_text"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@+id/text_root"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <TextView
+        android:id="@+id/btn_cancle"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/line"
+        android:gravity="center"
+        android:text="@string/btn_cancel"
+        android:textColor="@color/gray_99"
+        android:textSize="16sp"/>
+
+
+</RelativeLayout>

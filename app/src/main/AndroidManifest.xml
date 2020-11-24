@@ -18,7 +18,8 @@
         android:resizeableActivity="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.AddSubtractActivity"></activity>
+        <activity android:name=".ui.activity.FingerprintActivity"></activity>
+        <activity android:name=".ui.activity.AddSubtractActivity" />
         <activity android:name=".ui.activity.WebActivity" />
         <activity
             android:name=".ui.activity.NetReqActivity"

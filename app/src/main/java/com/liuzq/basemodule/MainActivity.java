@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.liuzq.basemodule.ui.activity.AddSubtractActivity;
+import com.liuzq.basemodule.ui.activity.FingerprintActivity;
 import com.liuzq.basemodule.ui.activity.FlowLayoutActivity;
 import com.liuzq.basemodule.ui.activity.FragmentActivity;
 import com.liuzq.basemodule.ui.activity.MultipleLayoutActivity;
@@ -89,6 +90,10 @@ public class MainActivity extends CommActivity implements BaseQuickAdapter.OnIte
         data.setName("addsubtractview");
         datas.add(data);
 
+        data = new MainData();
+        data.setName("fingerprint");
+        datas.add(data);
+
         return datas;
     }
 
@@ -121,6 +126,9 @@ public class MainActivity extends CommActivity implements BaseQuickAdapter.OnIte
                 break;
             case 6:
                 ActivityUtils.skipActivity(this, AddSubtractActivity.class);
+                break;
+            case 7:
+                ActivityUtils.skipActivity(this, FingerprintActivity.class);
                 break;
         }
     }
