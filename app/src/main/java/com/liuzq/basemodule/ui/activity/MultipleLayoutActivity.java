@@ -14,6 +14,10 @@ import com.wuhenzhizao.titlebar.widget.CommonTitleBar;
 
 import butterknife.BindView;
 
+/**
+ * @author liuzq
+ * dec: 多布局 加载、错误、空数据、显示内容
+ */
 public class MultipleLayoutActivity extends CommActivity implements CommonTitleBar.OnTitleBarListener {
     private final String TAG = this.getClass().getSimpleName();
 

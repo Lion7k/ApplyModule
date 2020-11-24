@@ -43,7 +43,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.NetActivity" />
         <activity android:name=".ui.activity.MultipleLayoutActivity" />
         <activity android:name=".ui.activity.RefreshActivity" />
         <activity android:name=".ui.activity.FlowLayoutActivity" />

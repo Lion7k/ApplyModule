@@ -20,6 +20,10 @@ import com.liuzq.fingerprintidentify.base.BaseFingerprint;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * @author liuzq
+ * dec: 指纹 适配大部分市面机型（安卓原生、三星、魅族）
+ */
 public class FingerprintActivity extends CommActivity {
     @BindView(R.id.tv_switch_fingerprint)
     TextView mTvSwithFingerprint;

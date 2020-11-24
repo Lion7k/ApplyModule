@@ -22,6 +22,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * @author liuzq
+ * dec: 下拉刷新上拉加载
+ */
 public class RefreshActivity extends RefreshLayoutBaseActivity implements BaseQuickAdapter.OnItemClickListener,
         BaseQuickAdapter.OnItemChildClickListener{
 

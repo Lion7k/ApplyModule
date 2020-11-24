@@ -18,6 +18,10 @@ import com.liuzq.commlibrary.base.BasePagerAdapter;
 
 import butterknife.BindView;
 
+/**
+ * @author liuzq
+ * dec: 流式布局单选、多选
+ */
 public class FlowLayoutActivity extends CommActivity {
     @BindView(R.id.id_tablayout)
     TabLayout mTabLayout;

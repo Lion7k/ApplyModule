@@ -8,6 +8,10 @@ import com.liuzq.basemodule.ui.activity.base.CommActivity;
 
 import butterknife.BindView;
 
+/**
+ * @author liuzq
+ * dec: 搜索结果
+ */
 public class SearchResultActivity extends CommActivity {
 
     @BindView(R.id.tv_show)

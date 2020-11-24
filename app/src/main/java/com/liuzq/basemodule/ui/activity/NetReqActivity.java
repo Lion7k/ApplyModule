@@ -38,6 +38,10 @@ import java.util.List;
 import butterknife.BindView;
 import okhttp3.ResponseBody;
 
+/**
+ * @author liuzq
+ * dec: rxhttp 网络请求
+ */
 public class NetReqActivity extends CommActivity<RxPresenterImpl> implements RxContract.View
         , CommonTitleBar.OnTitleBarListener {
 

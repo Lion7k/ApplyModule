@@ -15,6 +15,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * @author liuzq
+ * dec: 搜索控件
+ */
 public class SearchActivity extends CommActivity {
 
     @BindView(R.id.searchlayout)

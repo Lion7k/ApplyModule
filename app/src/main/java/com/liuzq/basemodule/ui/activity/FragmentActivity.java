@@ -24,6 +24,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * @author liuzq
+ * dec: fragment bottombar
+ */
 public class FragmentActivity extends CommActivity implements BottomBarLayout.OnItemSelectedListener, CommonTitleBar.OnTitleBarListener {
 
     @BindView(R.id.vp_content)
