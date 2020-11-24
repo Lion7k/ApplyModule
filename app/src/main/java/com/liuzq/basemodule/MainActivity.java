@@ -12,6 +12,7 @@ import com.liuzq.basemodule.ui.activity.FragmentActivity;
 import com.liuzq.basemodule.ui.activity.MultipleLayoutActivity;
 import com.liuzq.basemodule.ui.activity.NetReqActivity;
 import com.liuzq.basemodule.ui.activity.RefreshActivity;
+import com.liuzq.basemodule.ui.activity.SearchActivity;
 import com.liuzq.basemodule.ui.activity.WebActivity;
 import com.liuzq.basemodule.ui.activity.base.CommActivity;
 import com.liuzq.basemodule.ui.activity.bean.MainData;
@@ -91,6 +92,10 @@ public class MainActivity extends CommActivity implements BaseQuickAdapter.OnIte
         datas.add(data);
 
         data = new MainData();
+        data.setName("Searchlayout");
+        datas.add(data);
+
+        data = new MainData();
         data.setName("fingerprint");
         datas.add(data);
 
@@ -128,6 +133,9 @@ public class MainActivity extends CommActivity implements BaseQuickAdapter.OnIte
                 ActivityUtils.skipActivity(this, AddSubtractActivity.class);
                 break;
             case 7:
+                ActivityUtils.skipActivity(this, SearchActivity.class);
+                break;
+            case 8:
                 ActivityUtils.skipActivity(this, FingerprintActivity.class);
                 break;
         }

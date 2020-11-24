@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/commlibrary/commlibrary.iml" filepath="$PROJECT_DIR$/commlibrary/commlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/flowlayout/flowlayout.iml" filepath="$PROJECT_DIR$/flowlayout/flowlayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/rxhttp/rxhttp.iml" filepath="$PROJECT_DIR$/rxhttp/rxhttp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/searchbox/searchbox.iml" filepath="$PROJECT_DIR$/searchbox/searchbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/statusview/statusview.iml" filepath="$PROJECT_DIR$/statusview/statusview.iml" />
       <module fileurl="file://$PROJECT_DIR$/tablayout/tablayout.iml" filepath="$PROJECT_DIR$/tablayout/tablayout.iml" />
     </modules>

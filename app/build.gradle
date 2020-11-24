@@ -50,6 +50,7 @@ dependencies {
     implementation project(':bottombar')
     implementation project(':flowlayout')
     implementation project(':addsubtractview')
+    implementation project(":searchbox")
     implementation project(':fingerprintidentify')
 
     //注解
