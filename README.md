@@ -49,7 +49,7 @@ dependencies {
 	//定义的视图组件，搜索功能控件（可选）
  	implementation 'com.github.Lion7k.ApplyModule:searchbox:v1.0.2'
 	
-	//定义的视图组件，适配大部分机型指纹识别（可选）
+	//适配大部分机型指纹识别（可选）
  	implementation 'com.github.Lion7k.ApplyModule:fingerprintidentify:v1.0.2'
 }
 ```
