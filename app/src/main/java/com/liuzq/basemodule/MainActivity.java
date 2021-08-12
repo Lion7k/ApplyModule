@@ -143,7 +143,7 @@ public class MainActivity extends CommActivity implements BaseQuickAdapter.OnIte
             case 8:
                 ActivityUtils.skipActivity(this, FingerprintActivity.class);
                 break;
-            case 8:
+            case 9:
                 ActivityUtils.skipActivity(this, SegmentActivity.class);
                 break;
         }

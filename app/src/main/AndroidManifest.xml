@@ -18,7 +18,10 @@
         android:resizeableActivity="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.SearchResultActivity"/>
+        <activity
+            android:name=".ui.activity.SegmentActivity"
+            android:exported="true" />
+        <activity android:name=".ui.activity.SearchResultActivity" />
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.FingerprintActivity"></activity>
         <activity android:name=".ui.activity.AddSubtractActivity" />
