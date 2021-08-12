@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:titlebar="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_f5">
+
+    <com.wuhenzhizao.titlebar.widget.CommonTitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        titlebar:centerText="指纹校验"
+        titlebar:centerTextColor="@color/black"
+        titlebar:centerTextSize="18sp"
+        titlebar:centerType="textView"
+        titlebar:fillStatusBar="false"
+        titlebar:showBottomLine="true" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/touch_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_bg_white_radios4dp"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/dp_5"
+        android:paddingHorizontal="@dimen/dp_14"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_14">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Touch ID"
+            android:layout_weight="@integer/int_1"
+            android:textColor="@color/gray_33"
+            android:textSize="@dimen/sp_14"/>
+
+        <TextView
+            android:id="@+id/tv_switch_fingerprint"
+            style="@style/item_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/user_status_on" />
+    </LinearLayout>
+</LinearLayout>

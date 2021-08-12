@@ -212,6 +212,7 @@ public class SearchLayout<T> extends LinearLayout implements View.OnClickListene
             //点击项移动到首部位
             swap(historyDatas, position,0);
             historyAdapter.notifyDataSetChanged();
+            onSearchCallBackListener.saveOldData(historyDatas);
         }
     }
     

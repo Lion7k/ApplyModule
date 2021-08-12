@@ -32,7 +32,9 @@ public class AddSubtractActivity extends CommActivity {
 
     @Override
     public void doBusiness() {
-        mAmountView.setGoods_storage(5);
+        mAmountView.setGoods_storage(50);
+        mAmountView.setAmount(0);
+        mAmountView.setAsOrder(5);
         mAmountView.setOnAmountChangeListener(new AmountView.OnAmountChangeListener() {
             @Override
             public void onAmountChange(View view, int amount) {

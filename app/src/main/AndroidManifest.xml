@@ -20,6 +20,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.SearchResultActivity"/>
         <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.FingerprintActivity"></activity>
         <activity android:name=".ui.activity.AddSubtractActivity" />
         <activity android:name=".ui.activity.WebActivity" />
         <activity
@@ -42,7 +43,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.NetActivity" />
         <activity android:name=".ui.activity.MultipleLayoutActivity" />
         <activity android:name=".ui.activity.RefreshActivity" />
         <activity android:name=".ui.activity.FlowLayoutActivity" />

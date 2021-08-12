@@ -25,6 +25,9 @@ import com.liuzq.basemodule.widget.WebLayout;
 
 import butterknife.BindView;
 
+/**
+ * web 使用
+ */
 public class WebActivity extends CommWebActivity {
 
     @BindView(R.id.container)

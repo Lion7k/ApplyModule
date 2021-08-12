@@ -51,6 +51,7 @@ dependencies {
     implementation project(':flowlayout')
     implementation project(':addsubtractview')
     implementation project(":searchbox")
+    implementation project(':fingerprintidentify')
 
     //注解
     implementation 'com.jakewharton:butterknife:8.8.1'
